@@ -44,6 +44,7 @@ p {
 
 .largeBeasts {
     font-weight: bold;
+    color: var(--background-color);
 }
 
 .grid__item {
@@ -54,7 +55,6 @@ p {
 @supports (display:grid) {
     .grid {
         display: grid;
-        position: relative;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: var(--theme-spacing);
         margin: 100px;
@@ -66,7 +66,7 @@ p {
     color: var(--text-color);
     text-align: center;
     width: auto;
-    min-height: 300px;
+    min-height: auto;
     padding: var(--theme-spacing);
 }
 
