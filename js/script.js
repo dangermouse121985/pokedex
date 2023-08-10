@@ -20,6 +20,8 @@ pokemonList = [
     }
 ]
 
+/*Iterate through the pokemonList for loop to print each pokemon with it's height.
+Conditional loop will add a largeBeast class and a mesage if the Pokemon is larger than 0.5m*/
 for (let i=0; i<pokemonList.length; i++) {
     if (pokemonList[i].height > 0.5) {
         document.write(`<p class="largeBeasts">${pokemonList[i].name} `);
