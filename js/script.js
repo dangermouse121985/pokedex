@@ -2,17 +2,21 @@ let pokemonList = [];
 pokemonList = [
     {
         name: 'Bulbasaur',
-        type: ['grass', 'poison'],
-        species: 'Seed'
+        type: ['Grass', 'Poison'],
+        species: 'Seed',
+        height: 10
     },
     {
         name: 'Charmander',
         Type: 'Fire',
-        species: 'Lizard'
+        species: 'Lizard',
+        height: 9
     },
     {
-        name: 'squirtle',
-        type: 'water',
-        species: 'Young Turtle'
+        name: 'Squirtle',
+        type: 'Water',
+        species: 'Young Turtle',
+        height: 15
     }
 ]
+
