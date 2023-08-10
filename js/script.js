@@ -28,7 +28,7 @@ for (let i=0; i<pokemonList.length; i++) {
     if (pokemonList[i].height > 0.5) {
         document.write(`<p class="largeBeasts">${pokemonList[i].name} `);
         document.write(`(height - ${pokemonList[i].height})`);
-        document.write('Wow that\'s big!!!</p>');
+        document.write('<br>Wow that\'s big!!!</p>');
     }
     else {
         document.write(`<p>${pokemonList[i].name} `);
