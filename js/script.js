@@ -8,13 +8,13 @@ pokemonList = [
     },
     {
         name: 'Charmander',
-        Type: 'Fire',
+        type: ['Fire'],
         species: 'Lizard',
         height: 0.6,
     },
     {
         name: 'Squirtle',
-        type: 'Water',
+        type: ['Water'],
         species: 'Young Turtle',
         height: 0.5,
     }
