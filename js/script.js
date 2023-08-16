@@ -4,18 +4,43 @@ pokemonList = [
         name: 'Bulbasaur',
         type: ['Grass', 'Poison'],
         species: 'Seed',
-        height: 0.7
+        height: 0.7,
     },
     {
         name: 'Charmander',
         type: ['Fire'],
         species: 'Lizard',
-        height: 0.6
+        height: 0.6,
     },
     {
         name: 'Squirtle',
         type: ['Water'],
         species: 'Young Turtle',
-        height: 0.5
+        height: 0.5,
     }
 ]
+
+//Iterate through the pokemonList to find the largest Pokemon
+let largestPokemon = 0;
+for (let i=0; i<pokemonList.length; i++) {
+    if ( pokemonList[i].height > largestPokemon) {
+        largestPokemon = pokemonList[i].name;
+    }
+}
+/*Iterate through the pokemonList for loop to print each pokemon with it's height.
+Conditional loop will add a largeBeast class and a mesage if the Pokemon is the largest*/
+document.write('<div class="grid">');
+for (let i=0; i<pokemonList.length; i++) {
+    document.write('<div class="grid__item">');
+    if (pokemonList[i].name === largestPokemon) {
+        document.write(`<p class="largeBeasts">${pokemonList[i].name} `);
+        document.write(`(height - ${pokemonList[i].height})`);
+        document.write('<br>Wow that\'s big!!!</p>');
+    }
+    else {
+        document.write(`<p>${pokemonList[i].name} `);
+        document.write(`(height - ${pokemonList[i].height})</p>`);
+    }
+    document.write('</div>');
+}
+document.write('</div>');
