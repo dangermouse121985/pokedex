@@ -20,6 +20,13 @@ pokemonList = [
     }
 ]
 
+//Iterate through the pokemonList to find the largest Pokemon
+let largestPokemon = 0;
+for (let i=0; i<pokemonList.length; i++) {
+    if ( pokemonList[i].height > largestPokemon) {
+        largestPokemon = pokemonList[i].name;
+    }
+}
 /*Iterate through the pokemonList for loop to print each pokemon with it's height.
 Conditional loop will add a largeBeast class and a mesage if the Pokemon is larger than 0.5m*/
 function printArrayDetails(pokemonList) {
@@ -35,6 +42,7 @@ function printArrayDetails(pokemonList) {
             document.write(`(height - ${pokemonList[i].height})</p>`);
         }
         document.write('</div>');
+
     }
 }
 
