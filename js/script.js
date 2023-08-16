@@ -23,17 +23,20 @@ pokemonList = [
     }
 ]
 
+//Height of the currently largest Pokemon
+let largestPokemonHeight = 0;
+//Counter used to identify the last Pokemon tagged as the largest
+let x = 0;
 //Iterate through the pokemonList to find the largest Pokemon
-let largestPokemon = 0;
-for (let i=0; i<pokemonList.length; i++) {
-    if ( pokemonList[i].height > largestPokemon) {
-        largestPokemon = pokemonList[i].height;
-        pokemonList[i].largestPokemon = true;
-        if (pokemonList[i].largestPokemon && i > 0){
-            pokemonList[i-1].largestPokemon = false;
-        }
+pokemonList.forEach(function(pokemon, index){
+    if ( pokemon.height > largestPokemonHeight) {
+        largestPokemonHeight = pokemon.height;
+        pokemonList[x].largestPokemon=false;
+        pokemon.largestPokemon = true;
+        x=index;
     }
-}
+})
+
 /*Iterate through the pokemonList for loop to print each pokemon with it's height.
 Conditional loop will add a largeBeast class and a mesage if the Pokemon is larger than 0.5m*/
 function printArrayDetails(pokemonList) {
