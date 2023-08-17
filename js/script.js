@@ -44,24 +44,27 @@ let pokemonRepository = function (){
 }();
 
 
+function largestPokemon () {
+    //Height of the currently largest Pokemon
+    let largestPokemonHeight = 0;
+    //Counter used to identify the last Pokemon tagged as the largest
+    let x = 0;
+    //Iterate through the pokemonList to find the largest Pokemon
+    pokemonRepository.getAll().forEach(function(pokemon, index){
+        if ( pokemon.height > largestPokemonHeight) {
+            largestPokemonHeight = pokemon.height;
+            pokemonRepository.getAll()[x].largestPokemon=false;
+            pokemon.largestPokemon = true;
+            x=index;
+        }
+    })
+}
 
-//Height of the currently largest Pokemon
-let largestPokemonHeight = 0;
-//Counter used to identify the last Pokemon tagged as the largest
-let x = 0;
-//Iterate through the pokemonList to find the largest Pokemon
-pokemonRepository.getAll().forEach(function(pokemon, index){
-    if ( pokemon.height > largestPokemonHeight) {
-        largestPokemonHeight = pokemon.height;
-        pokemonRepository.getAll()[x].largestPokemon=false;
-        pokemon.largestPokemon = true;
-        x=index;
-    }
-})
 
 /*Iterate through the pokemonList for loop to print each pokemon with it's height.
 Conditional loop will add a largeBeast class and a mesage if the Pokemon is larger than 0.5m*/
 function printArrayDetails(pokemonList) {
+    largestPokemon();
     pokemonRepository.getAll().forEach(function(pokemon) {
         document.write('<div class="grid__item">');
         if (pokemon.largestPokemon) {
