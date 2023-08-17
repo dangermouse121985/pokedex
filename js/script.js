@@ -110,12 +110,18 @@ function filterPokemonList (searchTerm) {
         let newArray = pokemonRepository.getAll().filter(function (el){
             return el.name === searchTerm;
         });
-        console.log(newArray[0].name);
-        document.getElementById('grid').innerHTML = 
+        if (newArray.length === 0){
+            document.getElementById('grid').innerHTML = 
+            `<div class="grid__item">
+                <p>No Search Results Found</p>
+            </div>`; 
+        } else {
+            document.getElementById('grid').innerHTML = 
                 `<div class="grid__item">
                     <p>${newArray[0].name} 
-                    (height - ${newArray[0].height})</p></p>
+                    (height - ${newArray[0].height})</p>
                 </div>`;
+        }        
     }
 }
 
