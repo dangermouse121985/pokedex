@@ -83,27 +83,40 @@ function largestPokemon () {
 Conditional loop will add a largeBeast class and a mesage if the Pokemon is larger than 0.5m*/
 function printArrayDetails(pokemonList) {
     largestPokemon();
+    document.getElementById('grid').innerHTML = '';
     pokemonList.forEach(function(pokemon) {
-        document.write('<div class="grid__item">');
+        let grid = document.getElementById('grid');
+        let cell = document.createElement("div");
         if (pokemon.largestPokemon) {
-            document.write(`<p class="largeBeasts">${pokemon.name} `);
-            document.write(`(height - ${pokemon.height})`);
-            document.write('<br>Wow that\'s big!!!</p>');
+            cell.innerHTML= 
+                    `<p class="largeBeasts">${pokemon.name}
+                    (height - ${pokemon.height})
+                    <br>Wow that\'s big!!!</p>`;
         }
         else {
-            document.write(`<p>${pokemon.name} `);
-            document.write(`(height - ${pokemon.height})</p>`);
+            cell.innerHTML = 
+                    `<p>${pokemon.name} 
+                    (height - ${pokemon.height})</p>`;
         }
-        document.write('</div>');
+        grid.appendChild(cell).className = 'grid__item ';
     })
 }
 
+//Filter list by search term
 function filterPokemonList (searchTerm) {
-    let newArray = pokemonRepository.getAll().filter(function (el){
-        return el.name === searchTerm;
-    });
-    console.log(newArray);
-    printArrayDetails(newArray);
+    if (searchTerm === ''){
+        printArrayDetails(pokemonRepository.getAll());
+    } else {
+        let newArray = pokemonRepository.getAll().filter(function (el){
+            return el.name === searchTerm;
+        });
+        console.log(newArray[0].name);
+        document.getElementById('grid').innerHTML = 
+                `<div class="grid__item">
+                    <p>${newArray[0].name} 
+                    (height - ${newArray[0].height})</p></p>
+                </div>`;
+    }
 }
 
 printArrayDetails(pokemonRepository.getAll());
