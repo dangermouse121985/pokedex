@@ -24,17 +24,36 @@ let pokemonRepository = function (){
         }
     ]
 
+    //Return an array of all Pokemon
     function getAll(){
         return pokemonList;
     }
 
+    //Verify New Pokemon Object contains the correct keys
+    function checkCorrectKeys(pokemon) {
+        let isCorrect = false;
+        for (i=0; i < Object.keys(pokemon).length; i++) {
+            if (Object.keys(pokemon)[i] === 'name' || 
+                Object.keys(pokemon)[i] === 'type' || 
+                Object.keys(pokemon)[i] === 'species' || 
+                Object.keys(pokemon)[i] === 'height' || 
+                Object.keys(pokemon)[i] === 'largestPokemon') {
+                    isCorrect = true;
+                } else {
+                    return false;
+                }
+            }
+        return true;
+    }
+
+    //Add New Pokemon Object to pokemonList
     function add(pokemon){
-        if (typeof pokemon === 'object'){
+        let correctKeys = checkCorrectKeys(pokemon);
+        if (typeof pokemon === 'object' && correctKeys){
             pokemonList.push(pokemon);
         } else {
-            console.log('Pokemon Type is not an object and is invalid')
+            console.log('Pokemon Type is not an object or contains incorrect keys and is invalid')
         }
-        console.log(Object.keys(pokemon));
     }
 
     return {
@@ -42,7 +61,6 @@ let pokemonRepository = function (){
         add
     }
 }();
-
 
 function largestPokemon () {
     //Height of the currently largest Pokemon
