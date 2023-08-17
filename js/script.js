@@ -83,7 +83,7 @@ function largestPokemon () {
 Conditional loop will add a largeBeast class and a mesage if the Pokemon is larger than 0.5m*/
 function printArrayDetails(pokemonList) {
     largestPokemon();
-    pokemonRepository.getAll().forEach(function(pokemon) {
+    pokemonList.forEach(function(pokemon) {
         document.write('<div class="grid__item">');
         if (pokemon.largestPokemon) {
             document.write(`<p class="largeBeasts">${pokemon.name} `);
@@ -96,6 +96,14 @@ function printArrayDetails(pokemonList) {
         }
         document.write('</div>');
     })
+}
+
+function filterPokemonList (searchTerm) {
+    let newArray = pokemonRepository.getAll().filter(function (el){
+        return el.name === searchTerm;
+    });
+    console.log(newArray);
+    printArrayDetails(newArray);
 }
 
 printArrayDetails(pokemonRepository.getAll());
