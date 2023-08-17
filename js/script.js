@@ -32,7 +32,7 @@ let pokemonRepository = function (){
     //Verify New Pokemon Object contains the correct keys
     function checkCorrectKeys(pokemon) {
         let isCorrect = false;
-        for (i=0; i < Object.keys(pokemon).length; i++) {
+        for (let i=0; i < Object.keys(pokemon).length; i++) {
             if (Object.keys(pokemon)[i] === 'name' || 
                 Object.keys(pokemon)[i] === 'type' || 
                 Object.keys(pokemon)[i] === 'species' || 
