@@ -107,20 +107,18 @@ function filterPokemonList (searchTerm) {
     if (searchTerm === ''){
         printArrayDetails(pokemonRepository.getAll());
     } else {
-        let newArray = pokemonRepository.getAll().filter(function (el){
-            return el.name === searchTerm;
+        let filterPokemonList = pokemonRepository.getAll().filter(function (filterPokemon){
+            return filterPokemon.name === searchTerm;
         });
-        if (newArray.length === 0){
+        //Check if Pokemon was found
+        if (filterPokemonList.length === 0){
             document.getElementById('grid').innerHTML = 
             `<div class="grid__item">
                 <p>No Search Results Found</p>
             </div>`; 
+        //if Pokemon was found, display on page
         } else {
-            document.getElementById('grid').innerHTML = 
-                `<div class="grid__item">
-                    <p>${newArray[0].name} 
-                    (height - ${newArray[0].height})</p>
-                </div>`;
+            printArrayDetails(filterPokemonList);
         }        
     }
 }
