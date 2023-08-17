@@ -29,14 +29,20 @@ let pokemonRepository = function (){
     }
 
     function add(pokemon){
-        pokemonList.push(pokemon);
+        if (typeof pokemon === 'object'){
+            pokemonList.push(pokemon);
+        } else {
+            console.log('Pokemon Type is not an object and is invalid')
+        }
+        console.log(Object.keys(pokemon));
     }
 
     return {
-        getAll: getAll,
-        add: add
+        getAll,
+        add
     }
 }();
+
 
 
 //Height of the currently largest Pokemon
