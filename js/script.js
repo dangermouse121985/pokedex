@@ -31,18 +31,20 @@ let pokemonRepository = function (){
 
     //Verify New Pokemon Object contains the correct keys
     function checkCorrectKeys(pokemon) {
+        let pokemonKeys = Object.keys(pokemon);
         let isCorrect = false;
-        for (let i=0; i < Object.keys(pokemon).length; i++) {
-            if (Object.keys(pokemon)[i] === 'name' || 
-                Object.keys(pokemon)[i] === 'type' || 
-                Object.keys(pokemon)[i] === 'species' || 
-                Object.keys(pokemon)[i] === 'height' || 
-                Object.keys(pokemon)[i] === 'largestPokemon') {
+
+        pokemonKeys.forEach(function (pokemonName){
+            if (pokemonName === 'name' || 
+                pokemonName === 'type' || 
+                pokemonName === 'species' || 
+                pokemonName === 'height' || 
+                pokemonName === 'largestPokemon') {
                     isCorrect = true;
                 } else {
                     return false;
                 }
-            }
+        })
         return true;
     }
 
