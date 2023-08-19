@@ -83,11 +83,19 @@ function largestPokemon () {
 
 /*Iterate through the pokemonList for loop to print each pokemon with it's height.
 Conditional loop will add a largeBeast class and a mesage if the Pokemon is larger than 0.5m*/
-function printArrayDetails(pokemonList) {
+function printArrayDetails(pokemonArray) {
     largestPokemon();
-    document.getElementById('grid').innerHTML = '';
-    pokemonList.forEach(function(pokemon) {
-        let grid = document.getElementById('grid');
+    //document.getElementById('grid').innerHTML = '';
+    pokemonArray.forEach(function(pokemon) {
+        let pokemonList = document.querySelector('.pokemon-list');
+        let listItem = document.createElement('li');
+        let listItemButton = document.createElement('button');
+        listItemButton.innerText = pokemon.name;
+
+
+        listItem.appendChild(listItemButton);
+        pokemonList.appendChild(listItem);
+        /* let grid = document.getElementById('grid');
         let cell = document.createElement("div");
         if (pokemon.largestPokemon) {
             cell.innerHTML= 
@@ -100,12 +108,12 @@ function printArrayDetails(pokemonList) {
                     `<p>${pokemon.name} 
                     (height - ${pokemon.height})</p>`;
         }
-        grid.appendChild(cell).className = 'grid__item ';
+        grid.appendChild(cell).className = 'grid__item '; */
     })
 }
 
 //Filter list by search term
-function filterPokemonList (searchTerm) {
+/* function filterPokemonList (searchTerm) {
     if (searchTerm === ''){
         printArrayDetails(pokemonRepository.getAll());
     } else {
@@ -123,6 +131,6 @@ function filterPokemonList (searchTerm) {
             printArrayDetails(filterPokemonList);
         }        
     }
-}
+} */
 
 printArrayDetails(pokemonRepository.getAll());
