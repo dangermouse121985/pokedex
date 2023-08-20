@@ -58,9 +58,34 @@ let pokemonRepository = function (){
         }
     }
 
+    function addListItem (pokemon){
+        let pokemonList = document.querySelector('.pokemon-list');
+        let listItem = document.createElement('li');
+        listItem.classList.add('list__item');
+        let listItemButton = document.createElement('button');
+        listItemButton.classList.add('pokemon-tile')
+        listItemButton.innerText = pokemon.name;
+
+        buttonClickListener(listItemButton, pokemon);
+
+        listItem.appendChild(listItemButton);
+        pokemonList.appendChild(listItem);
+    }
+
+    function buttonClickListener (listItemButton, pokemon){
+        listItemButton.addEventListener('click', function(){
+            showDetails(pokemon);
+        });
+    }
+
+    function showDetails (pokemon){
+        console.log(pokemon.name);
+    }
+
     return {
         getAll,
-        add
+        add,
+        addListItem
     }
 }();
 
@@ -86,34 +111,15 @@ Conditional loop will add a largeBeast class and a mesage if the Pokemon is larg
 function printArrayDetails(pokemonArray) {
     largestPokemon();
     //document.getElementById('grid').innerHTML = '';
+    let pokemonList = document.querySelector('.pokemon-list');
+    pokemonList.innerHTML = '';
     pokemonArray.forEach(function(pokemon) {
-        let pokemonList = document.querySelector('.pokemon-list');
-        let listItem = document.createElement('li');
-        let listItemButton = document.createElement('button');
-        listItemButton.innerText = pokemon.name;
-
-
-        listItem.appendChild(listItemButton);
-        pokemonList.appendChild(listItem);
-        /* let grid = document.getElementById('grid');
-        let cell = document.createElement("div");
-        if (pokemon.largestPokemon) {
-            cell.innerHTML= 
-                    `<p class="largeBeasts">${pokemon.name}
-                    (height - ${pokemon.height})
-                    <br>Wow that\'s big!!!</p>`;
-        }
-        else {
-            cell.innerHTML = 
-                    `<p>${pokemon.name} 
-                    (height - ${pokemon.height})</p>`;
-        }
-        grid.appendChild(cell).className = 'grid__item '; */
+        pokemonRepository.addListItem(pokemon);
     })
 }
 
 //Filter list by search term
-/* function filterPokemonList (searchTerm) {
+function filterPokemonList (searchTerm) {
     if (searchTerm === ''){
         printArrayDetails(pokemonRepository.getAll());
     } else {
@@ -122,15 +128,34 @@ function printArrayDetails(pokemonArray) {
         });
         //Check if Pokemon was found
         if (filterPokemonList.length === 0){
-            document.getElementById('grid').innerHTML = 
-            `<div class="grid__item">
+            let pokemonList = document.querySelector('.pokemon-list');
+            pokemonList.innerHTML = '';
+            let noResults = document.createElement('li');
+            noResults.classList.add('list__item');
+            noResults.innerText = 'No Search Results Found'; 
+
+            pokemonList.appendChild(noResults);
+            /* `<li class="list__item">
                 <p>No Search Results Found</p>
-            </div>`; 
+            </div>`;  */
         //if Pokemon was found, display on page
         } else {
             printArrayDetails(filterPokemonList);
         }        
     }
-} */
+}
 
 printArrayDetails(pokemonRepository.getAll());
+
+let searchButton = document.querySelector('.filter');
+searchButton.addEventListener('click', function() {
+    let searchTerm = document.querySelector('.search-term').value;
+    filterPokemonList(searchTerm);
+});
+
+let clearButton = document.querySelector('.clear-filter');
+clearButton.addEventListener('click', function() {
+    filterPokemonList('');
+    document.querySelector('.search-term').value = '';
+    
+});

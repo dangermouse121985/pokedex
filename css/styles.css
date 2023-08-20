@@ -42,32 +42,37 @@ p {
     font-size: 20px;
 }
 
+.search-bar {
+    margin-top:100px;
+}
+
 .largeBeasts {
     font-weight: bold;
     color: var(--background-color);
 }
 
-.grid__item {
+.pokemon-list {
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: var(--theme-spacing); */
+    margin: 100px;
+}
+
+.list__item {
     display: inline-block;
-    width: 33%;
-}
-
-@supports (display:grid) {
-    .pokemon-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: var(--theme-spacing);
-        margin: 100px;
-    }
-}
-
-.grid__item {
+    width: 30%;
+    list-style: none;
     background: var(--secondary-color);
     color: var(--text-color);
     text-align: center;
-    width: auto;
     min-height: auto;
     padding: var(--theme-spacing);
+}
+
+.pokemon-tile {
+    width: 100%;
+    height: 40px;
+    border: none;
 }
 
 .navigation-list__item {
