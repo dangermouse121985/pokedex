@@ -21,27 +21,6 @@ let pokemonRepository = function (){
             species: 'Young Turtle',
             height: 0.5,
             largestPokemon: false
-        },
-        {
-            name: 'Bulbasaur',
-            type: ['Grass', 'Poison'],
-            species: 'Seed',
-            height: 0.7,
-            largestPokemon: false
-        },
-        {
-            name: 'Charmander',
-            type: ['Fire'],
-            species: 'Lizard',
-            height: 0.6,
-            largestPokemon: false
-        },
-        {
-            name: 'Squirtle',
-            type: ['Water'],
-            species: 'Young Turtle',
-            height: 0.5,
-            largestPokemon: false
         }
     ]
 
