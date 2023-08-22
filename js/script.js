@@ -21,6 +21,27 @@ let pokemonRepository = function (){
             species: 'Young Turtle',
             height: 0.5,
             largestPokemon: false
+        },
+        {
+            name: 'Bulbasaur',
+            type: ['Grass', 'Poison'],
+            species: 'Seed',
+            height: 0.7,
+            largestPokemon: false
+        },
+        {
+            name: 'Charmander',
+            type: ['Fire'],
+            species: 'Lizard',
+            height: 0.6,
+            largestPokemon: false
+        },
+        {
+            name: 'Squirtle',
+            type: ['Water'],
+            species: 'Young Turtle',
+            height: 0.5,
+            largestPokemon: false
         }
     ]
 
@@ -124,7 +145,9 @@ function filterPokemonList (searchTerm) {
         printArrayDetails(pokemonRepository.getAll());
     } else {
         let filterPokemonList = pokemonRepository.getAll().filter(function (filterPokemon){
-            return filterPokemon.name === searchTerm;
+            let filterPokemonLC = filterPokemon.name.toLowerCase();
+            let searchTermLC = searchTerm.toLowerCase();
+            return filterPokemonLC.includes(searchTermLC);
         });
         //Check if Pokemon was found
         if (filterPokemonList.length === 0){
