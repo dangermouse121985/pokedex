@@ -131,6 +131,7 @@ form {
     height: 60px;
     border: none;
     color: var(--text-color);
+    transition: background-color 0.2s ease-in-out;
 }
 
 .pokemon-tile:hover {
