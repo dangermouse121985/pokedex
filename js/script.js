@@ -1,28 +1,6 @@
 let pokemonRepository = function (){
     let pokemonList = [];
-    pokemonList = [
-        {
-            name: 'Bulbasaur',
-            type: ['Grass', 'Poison'],
-            species: 'Seed',
-            height: 0.7,
-            largestPokemon: false
-        },
-        {
-            name: 'Charmander',
-            type: ['Fire'],
-            species: 'Lizard',
-            height: 0.6,
-            largestPokemon: false
-        },
-        {
-            name: 'Squirtle',
-            type: ['Water'],
-            species: 'Young Turtle',
-            height: 0.5,
-            largestPokemon: false
-        }
-    ]
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     //Return an array of all Pokemon
     function getAll(){
@@ -79,15 +57,56 @@ let pokemonRepository = function (){
     }
 
     function showDetails (pokemon){
-        console.log(pokemon.name);
+        loadDetails(pokemon).then(function () {
+            console.log(`Name: ${pokemon.name} Height: ${pokemon.height}`);
+        });
+    }
+
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            json.results.forEach(function(item) {
+                let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url
+                };
+                add(pokemon);
+            });
+        }).catch(function (e) {
+            console.error(e);
+        })
+    }
+
+    function loadDetails(pokemon) {
+        let url = pokemon.detailsUrl;
+        return fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (details) {
+            //Now we add the details to the pokemon
+            pokemon.imageUrl = details.sprites.front_default;
+            pokemon.height = details.height;
+            pokemon.types = details.types;
+        }).catch(function (e) {
+            console.error(e);
+        });
     }
 
     return {
         getAll,
         add,
+        loadList,
+        loadDetails,
         addListItem
     }
 }();
+
+pokemonRepository.loadList().then(function() {
+    //Now the data is loaded!
+    pokemonRepository.getAll().forEach(function(pokemon) {
+        pokemonRepository.addListItem(pokemon);
+    });
+});
 
 function largestPokemon () {
     //Height of the currently largest Pokemon
