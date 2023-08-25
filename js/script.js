@@ -63,6 +63,8 @@ let pokemonRepository = function (){
     }
 
     function loadList() {
+        showLoadingMessage();
+        
         return fetch(apiUrl).then(function (response) {
             return response.json();
         }).then(function (json) {
@@ -72,13 +74,22 @@ let pokemonRepository = function (){
                     detailsUrl: item.url
                 };
                 add(pokemon);
+                //*******Using Timeout to make sure that it works. Will Remove later*******
+                setTimeout(function(){
+                    hideLoadingMessage(); 
+                }, 1000);
             });
         }).catch(function (e) {
             console.error(e);
+            //*******Using Timeout to make sure that it works. Will Remove later*******
+            setTimeout(function(){
+                hideLoadingMessage(); 
+            }, 1000);
         })
     }
 
     function loadDetails(pokemon) {
+        showLoadingMessage();
         let url = pokemon.detailsUrl;
         return fetch(url).then(function (response) {
             return response.json();
@@ -87,8 +98,16 @@ let pokemonRepository = function (){
             pokemon.imageUrl = details.sprites.front_default;
             pokemon.height = details.height;
             pokemon.types = details.types;
+            //*******Using Timeout to make sure that it works. Will Remove later*******
+            setTimeout(function(){
+                hideLoadingMessage(); 
+            }, 1000);
         }).catch(function (e) {
             console.error(e);
+            //*******Using Timeout to make sure that it works. Will Remove later*******
+            setTimeout(function(){
+                hideLoadingMessage(); 
+            }, 3000);
         });
     }
 
@@ -180,3 +199,13 @@ clearButton.addEventListener('click', function() {
     document.querySelector('.search-term').value = '';
     
 });
+
+function showLoadingMessage () {
+    let waitingScreen = document.querySelector('.waiting-screen');
+    waitingScreen.style.display = 'block';
+}
+
+function hideLoadingMessage () {
+    let waitingScreen = document.querySelector('.waiting-screen');
+    waitingScreen.style.display = 'none';
+}

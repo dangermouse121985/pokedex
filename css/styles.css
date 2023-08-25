@@ -21,6 +21,25 @@ body {
     font-weight: 400;
 }
 
+.waiting-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .7);
+    padding: 0 auto;
+}
+
+.waiting-screen h1 {
+    position: fixed;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: var(--text-color);
+}
+
 .page-header {
     position: fixed;
     top: 0;
