@@ -58,7 +58,10 @@ let pokemonRepository = function (){
 
     function showDetails (pokemon){
         loadDetails(pokemon).then(function () {
-            console.log(`Name: ${pokemon.name} Height: ${pokemon.height}`);
+            console.log(`Name: ${pokemon.name} \nHeight: ${pokemon.height} \nImage URL: ${pokemon.imageUrl}`);
+            pokemon.types.forEach(function (pokemon){
+                console.log(`Pokemon Types: ${pokemon.type.name}`);
+            });
         });
     }
 
