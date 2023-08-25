@@ -1,9 +1,9 @@
-let pokemonRepository = function (){
+let pokemonRepository = function () {
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     //Return an array of all Pokemon
-    function getAll(){
+    function getAll() {
         return pokemonList;
     }
 
@@ -12,31 +12,31 @@ let pokemonRepository = function (){
         let pokemonKeys = Object.keys(pokemon);
         let isCorrect = false;
 
-        pokemonKeys.forEach(function (pokemonName){
-            if (pokemonName === 'name' || 
-                pokemonName === 'type' || 
-                pokemonName === 'species' || 
-                pokemonName === 'height' || 
+        pokemonKeys.forEach(function (pokemonName) {
+            if (pokemonName === 'name' ||
+                pokemonName === 'type' ||
+                pokemonName === 'species' ||
+                pokemonName === 'height' ||
                 pokemonName === 'largestPokemon') {
-                    isCorrect = true;
-                } else {
-                    return false;
-                }
+                isCorrect = true;
+            } else {
+                return false;
+            }
         })
         return true;
     }
 
     //Add New Pokemon Object to pokemonList
-    function add(pokemon){
+    function add(pokemon) {
         let correctKeys = checkCorrectKeys(pokemon);
-        if (typeof pokemon === 'object' && correctKeys){
+        if (typeof pokemon === 'object' && correctKeys) {
             pokemonList.push(pokemon);
         } else {
             console.log('Pokemon Type is not an object or contains incorrect keys and is invalid')
         }
     }
 
-    function addListItem (pokemon){
+    function addListItem(pokemon) {
         let pokemonList = document.querySelector('.pokemon-list');
         let listItem = document.createElement('li');
         listItem.classList.add('list__item');
@@ -50,16 +50,25 @@ let pokemonRepository = function (){
         pokemonList.appendChild(listItem);
     }
 
-    function buttonClickListener (listItemButton, pokemon){
-        listItemButton.addEventListener('click', function(){
+    function buttonClickListener(listItemButton, pokemon) {
+        listItemButton.addEventListener('click', function () {
             showDetails(pokemon);
         });
     }
 
-    function showDetails (pokemon){
+    function showDetails(pokemon) {
+        let modal = document.querySelector('#modal')
+        modal.innerHTML = '';
+        let pokemonTitle = document.createElement('h1');
+        let pokemonImageUrl = document.createElement('img');
         loadDetails(pokemon).then(function () {
+            showModal();
+            pokemonTitle.innerText = pokemon.name;
+            pokemonImageUrl.src = pokemon.imageUrl;
+            modal.appendChild(pokemonTitle);
+            modal.appendChild(pokemonImageUrl);
             console.log(`Name: ${pokemon.name} \nHeight: ${pokemon.height} \nImage URL: ${pokemon.imageUrl}`);
-            pokemon.types.forEach(function (pokemon){
+            pokemon.types.forEach(function (pokemon) {
                 console.log(`Pokemon Types: ${pokemon.type.name}`);
             });
         });
@@ -67,26 +76,26 @@ let pokemonRepository = function (){
 
     function loadList() {
         showLoadingMessage();
-        
+
         return fetch(apiUrl).then(function (response) {
             return response.json();
         }).then(function (json) {
-            json.results.forEach(function(item) {
+            json.results.forEach(function (item) {
                 let pokemon = {
                     name: item.name,
                     detailsUrl: item.url
                 };
                 add(pokemon);
                 //*******Using Timeout to make sure that it works. Will Remove later*******
-                setTimeout(function(){
-                    hideLoadingMessage(); 
+                setTimeout(function () {
+                    hideLoadingMessage();
                 }, 1000);
             });
         }).catch(function (e) {
             console.error(e);
             //*******Using Timeout to make sure that it works. Will Remove later*******
-            setTimeout(function(){
-                hideLoadingMessage(); 
+            setTimeout(function () {
+                hideLoadingMessage();
             }, 1000);
         })
     }
@@ -102,16 +111,48 @@ let pokemonRepository = function (){
             pokemon.height = details.height;
             pokemon.types = details.types;
             //*******Using Timeout to make sure that it works. Will Remove later*******
-            setTimeout(function(){
-                hideLoadingMessage(); 
+            setTimeout(function () {
+                hideLoadingMessage();
             }, 1000);
         }).catch(function (e) {
             console.error(e);
             //*******Using Timeout to make sure that it works. Will Remove later*******
-            setTimeout(function(){
-                hideLoadingMessage(); 
+            setTimeout(function () {
+                hideLoadingMessage();
             }, 3000);
         });
+    }
+
+    function showModal() {
+        let modalContainer = document.querySelector('#modal-container');
+        let modal = document.querySelector('#modal');
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
+
+        closeButtonElement.addEventListener('click', hideModal);
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+                hideModal();
+            }
+        });
+
+        modalContainer.addEventListener('click', (e) => {
+            let target = e.target;
+            if (target === modalContainer) {
+                hideModal();
+            }
+        });
+
+        closeButtonElement.innerText = 'Close';
+        modalContainer.classList.add('is-visible');
+
+        modal.appendChild(closeButtonElement);
+    }
+
+    function hideModal() {
+        let modalContainer = document.querySelector('#modal-container');
+        modalContainer.classList.remove('is-visible');
     }
 
     return {
@@ -119,29 +160,31 @@ let pokemonRepository = function (){
         add,
         loadList,
         loadDetails,
-        addListItem
+        addListItem,
+        showModal,
+        hideModal
     }
 }();
 
-pokemonRepository.loadList().then(function() {
+pokemonRepository.loadList().then(function () {
     //Now the data is loaded!
-    pokemonRepository.getAll().forEach(function(pokemon) {
+    pokemonRepository.getAll().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
     });
 });
 
-function largestPokemon () {
+function largestPokemon() {
     //Height of the currently largest Pokemon
     let largestPokemonHeight = 0;
     //Counter used to identify the last Pokemon tagged as the largest
     let x = 0;
     //Iterate through the pokemonList to find the largest Pokemon
-    pokemonRepository.getAll().forEach(function(pokemon, index){
-        if ( pokemon.height > largestPokemonHeight) {
+    pokemonRepository.getAll().forEach(function (pokemon, index) {
+        if (pokemon.height > largestPokemonHeight) {
             largestPokemonHeight = pokemon.height;
-            pokemonRepository.getAll()[x].largestPokemon=false;
+            pokemonRepository.getAll()[x].largestPokemon = false;
             pokemon.largestPokemon = true;
-            x=index;
+            x = index;
         }
     })
 }
@@ -154,61 +197,61 @@ function printArrayDetails(pokemonArray) {
     //document.getElementById('grid').innerHTML = '';
     let pokemonList = document.querySelector('.pokemon-list');
     pokemonList.innerHTML = '';
-    pokemonArray.forEach(function(pokemon) {
+    pokemonArray.forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
     })
 }
 
 //Filter list by search term
-function filterPokemonList (searchTerm) {
-    if (searchTerm === ''){
+function filterPokemonList(searchTerm) {
+    if (searchTerm === '') {
         printArrayDetails(pokemonRepository.getAll());
     } else {
-        let filterPokemonList = pokemonRepository.getAll().filter(function (filterPokemon){
+        let filterPokemonList = pokemonRepository.getAll().filter(function (filterPokemon) {
             let filterPokemonLC = filterPokemon.name.toLowerCase();
             let searchTermLC = searchTerm.toLowerCase();
             return filterPokemonLC.includes(searchTermLC);
         });
         //Check if Pokemon was found
-        if (filterPokemonList.length === 0){
+        if (filterPokemonList.length === 0) {
             let pokemonList = document.querySelector('.pokemon-list');
             pokemonList.innerHTML = '';
             let noResults = document.createElement('li');
             noResults.classList.add('list__item');
-            noResults.innerText = 'No Search Results Found'; 
+            noResults.innerText = 'No Search Results Found';
 
             pokemonList.appendChild(noResults);
             /* `<li class="list__item">
                 <p>No Search Results Found</p>
             </div>`;  */
-        //if Pokemon was found, display on page
+            //if Pokemon was found, display on page
         } else {
             printArrayDetails(filterPokemonList);
-        }        
+        }
     }
 }
 
 printArrayDetails(pokemonRepository.getAll());
 
 let searchButton = document.querySelector('.filter');
-searchButton.addEventListener('click', function() {
+searchButton.addEventListener('click', function () {
     let searchTerm = document.querySelector('.search-term').value;
     filterPokemonList(searchTerm);
 });
 
 let clearButton = document.querySelector('.clear-filter');
-clearButton.addEventListener('click', function() {
+clearButton.addEventListener('click', function () {
     filterPokemonList('');
     document.querySelector('.search-term').value = '';
-    
+
 });
 
-function showLoadingMessage () {
+function showLoadingMessage() {
     let waitingScreen = document.querySelector('.waiting-screen');
-    waitingScreen.style.display = 'block';
+    waitingScreen.classList.add('is-visible');
 }
 
-function hideLoadingMessage () {
+function hideLoadingMessage() {
     let waitingScreen = document.querySelector('.waiting-screen');
-    waitingScreen.style.display = 'none';
+    waitingScreen.classList.remove('is-visible');
 }

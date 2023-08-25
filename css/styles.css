@@ -21,8 +21,13 @@ body {
     font-weight: 400;
 }
 
-.waiting-screen {
+.waiting-screen,
+.modal-container {
     display: none;
+}
+
+.waiting-screen.is-visible,
+#modal-container.is-visible {
     position: fixed;
     top: 0;
     left: 0;
@@ -30,6 +35,28 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, .7);
     padding: 0 auto;
+    box-sizing: border-box;
+
+    /* to allow scrolling if the screen is not high enough */
+    overflow: auto;
+
+    /* this is used to center the modal */
+    display: grid;
+    text-align: center;
+}
+
+.waiting-screen {
+    z-index: 999;
+}
+
+#modal-container.is-visible {
+    z-index: 998;
+}
+
+#modal {
+    width: 50%;
+    height: 50%;
+    background-color: var(--secondar-color-darker);
 }
 
 .waiting-screen h1 {
