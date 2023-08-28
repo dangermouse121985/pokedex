@@ -184,6 +184,10 @@ form {
     background-color: var(--primary-color-darker);
 }
 
+.pokemon-image {
+    width: 25%;
+}
+
 @media screen and (max-width: 750px) {
     .list__item {
         display: block;

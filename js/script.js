@@ -61,6 +61,7 @@ let pokemonRepository = function () {
         modal.innerHTML = '';
         let pokemonTitle = document.createElement('h1');
         let pokemonImageUrl = document.createElement('img');
+        pokemonImageUrl.classList.add('pokemon-image')
         loadDetails(pokemon).then(function () {
             showModal();
             pokemonTitle.innerText = pokemon.name;
@@ -107,7 +108,7 @@ let pokemonRepository = function () {
             return response.json();
         }).then(function (details) {
             //Now we add the details to the pokemon
-            pokemon.imageUrl = details.sprites.front_default;
+            pokemon.imageUrl = details.sprites.other.dream_world.front_default;
             pokemon.height = details.height;
             pokemon.types = details.types;
             //*******Using Timeout to make sure that it works. Will Remove later*******
