@@ -206,10 +206,11 @@ form {
 
 .modal-close {
     float: right;
+    font-family: 'Concert One', cursive;
     background-color: var(--secondary-color-darker);
     color: var(--text-color);
     border-radius: 50%;
-    border: 3px solid var(--text-color);
+    border: 2px solid var(--text-color);
     width: 25px;
     height: 25px;
 }
