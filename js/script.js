@@ -42,7 +42,9 @@ let pokemonRepository = function () {
         let listItem = document.createElement('li');
         listItem.classList.add('list__item');
         let listItemButton = document.createElement('button');
-        listItemButton.classList.add('pokemon-tile')
+        listItemButton.classList.add('pokemon-tile');
+        listItemButton.setAttribute('data-toggle', 'modal');
+        listItemButton.setAttribute('data-target', '#pokemonModal');
         listItemButton.innerText = pokemon.name;
 
         buttonClickListener(listItemButton, pokemon);
