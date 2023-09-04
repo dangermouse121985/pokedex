@@ -142,6 +142,7 @@ form {
     height: 30px;
     width: 100px;
     transition: background-color 0.2s ease-in-out;
+    border-radius: 5px;
 }
 
 #search-button:hover,
@@ -197,6 +198,14 @@ form {
     color: var(--text-color);
     transition: background-color 0.2s ease-in-out;
     margin: 10px 0;
+    border-radius: 5px;
+}
+
+.pokemon-list--image {
+    height: 60%;
+    position:absolute;
+    left: 20px;
+    top: 20px;
 }
 
 .pokemon-tile:hover {
@@ -280,7 +289,7 @@ button.close {
     #search-button,
     #clear-filter-button {
         display: block;
-        width: 99%;
+        width: 95%;
         margin: 10px auto;
     }
 /* 

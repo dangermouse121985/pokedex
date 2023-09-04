@@ -39,23 +39,36 @@ let pokemonRepository = function () {
     //Query pokemon-list element and add Pokemon Object to list
     function addListItem(pokemon) {
         let pokemonList = document.querySelector('.pokemon-list');
+        let pokemonImageUrl = document.createElement('img');
+        pokemonImageUrl.classList.add('pokemon-list--image');
+
+
+        loadTest(pokemon).then(function () {
+
+            //Add Pokemon Image URL to Image Tag
+            pokemonImageUrl.src = pokemon.imageUrl;
+            
+        });
+
+
         //let listItem = document.createElement('li');
         //listItem.classList.add('list-group-item');
         let listItemButton = document.createElement('button');
-        let testItemButton = document.createElement('div');
+        let listItemDiv = document.createElement('div');
         listItemButton.classList.add('pokemon-tile');
-        testItemButton.classList.add('col-lg-4');
-        testItemButton.classList.add('col-sm-12');
-        testItemButton.classList.add('col-md-6');
+        listItemDiv.classList.add('col-lg-4');
+        listItemDiv.classList.add('col-sm-12');
+        listItemDiv.classList.add('col-md-6');
         listItemButton.setAttribute('data-toggle', 'modal');
         listItemButton.setAttribute('data-target', '#pokemonModal');
         listItemButton.innerText = pokemon.name;
 
         buttonClickListener(listItemButton, pokemon);
 
-        testItemButton.appendChild(listItemButton);
-        //listItem.appendChild(listItemButton);
-        pokemonList.appendChild(testItemButton);
+        
+        listItemButton.appendChild(pokemonImageUrl);
+        listItemDiv.appendChild(listItemButton);
+        pokemonList.appendChild(listItemDiv);
     }
 
     //Add event listener to to pokemon list item
@@ -167,6 +180,24 @@ let pokemonRepository = function () {
             pokemon.imageUrl = details.sprites.other.dream_world.front_default;
             pokemon.height = details.height;
             pokemon.types = details.types;
+            setTimeout(function () {
+                hideLoadingMessage();
+            }, 500);
+        }).catch(function (e) {
+            console.error(e);
+            setTimeout(function () {
+                hideLoadingMessage();
+            }, 500);
+        });
+    }
+
+    function loadTest(pokemon) {
+        let url = pokemon.detailsUrl;
+        return fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (details) {
+            //Now we add the details to the pokemon
+            pokemon.imageUrl = details.sprites.other.dream_world.front_default;
             setTimeout(function () {
                 hideLoadingMessage();
             }, 500);
