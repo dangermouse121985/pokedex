@@ -39,18 +39,23 @@ let pokemonRepository = function () {
     //Query pokemon-list element and add Pokemon Object to list
     function addListItem(pokemon) {
         let pokemonList = document.querySelector('.pokemon-list');
-        let listItem = document.createElement('li');
-        listItem.classList.add('list__item');
+        //let listItem = document.createElement('li');
+        //listItem.classList.add('list-group-item');
         let listItemButton = document.createElement('button');
+        let testItemButton = document.createElement('div');
         listItemButton.classList.add('pokemon-tile');
+        testItemButton.classList.add('col-lg-4');
+        testItemButton.classList.add('col-sm-12');
+        testItemButton.classList.add('col-md-6');
         listItemButton.setAttribute('data-toggle', 'modal');
         listItemButton.setAttribute('data-target', '#pokemonModal');
         listItemButton.innerText = pokemon.name;
 
         buttonClickListener(listItemButton, pokemon);
 
-        listItem.appendChild(listItemButton);
-        pokemonList.appendChild(listItem);
+        testItemButton.appendChild(listItemButton);
+        //listItem.appendChild(listItemButton);
+        pokemonList.appendChild(testItemButton);
     }
 
     //Add event listener to to pokemon list item
@@ -111,6 +116,7 @@ let pokemonRepository = function () {
             pokemon.types.forEach(function (pokemon) {
                 let pokemonTypesListItem = document.createElement('li');
                 pokemonTypesListItem.classList.add('list-group-item');
+                pokemonTypesListItem.classList.add('pokemon-modal--list');
                 pokemonTypesListItem.innerText = pokemon.type.name;
                 pokemonTypes.appendChild(pokemonTypesListItem);
                 console.log(`Pokemon Types: ${pokemon.type.name}`);
