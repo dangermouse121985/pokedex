@@ -54,18 +54,15 @@ let pokemonRepository = function () {
         //let listItem = document.createElement('li');
         //listItem.classList.add('list-group-item');
         let listItemButton = document.createElement('button');
-        let listItemDiv = document.createElement('div');
         listItemButton.classList.add('pokemon-tile');
-        listItemDiv.classList.add('col-lg-4');
-        listItemDiv.classList.add('col-sm-12');
-        listItemDiv.classList.add('col-md-6');
         listItemButton.setAttribute('data-toggle', 'modal');
         listItemButton.setAttribute('data-target', '#pokemonModal');
         listItemButton.innerText = pokemon.name;
-
         buttonClickListener(listItemButton, pokemon);
 
-        
+        let listItemDiv = document.createElement('div');
+        listItemDiv.classList.add('col-lg-4','col-sm-12','col-md-6');
+
         listItemButton.appendChild(pokemonImageUrl);
         listItemDiv.appendChild(listItemButton);
         pokemonList.appendChild(listItemDiv);
@@ -128,8 +125,7 @@ let pokemonRepository = function () {
             pokemonTypesH2.innerText = 'Types';
             pokemon.types.forEach(function (pokemon) {
                 let pokemonTypesListItem = document.createElement('li');
-                pokemonTypesListItem.classList.add('list-group-item');
-                pokemonTypesListItem.classList.add('pokemon-modal--list');
+                pokemonTypesListItem.classList.add('list-group-item', 'pokemon-modal--list');
                 pokemonTypesListItem.innerText = pokemon.type.name;
                 pokemonTypes.appendChild(pokemonTypesListItem);
                 console.log(`Pokemon Types: ${pokemon.type.name}`);
@@ -208,48 +204,6 @@ let pokemonRepository = function () {
             }, 500);
         });
     }
-    
-    //Query Modal and Create its Elements. Add event listeners to close if close button, is clicked, escape key is presses, and modal container is clicked.
-    /* function showModal() {
-        let modalContainer = document.querySelector('#modal-container');
-        let modal = document.querySelector('#modal');
-        let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-
-        //Close Button Event Listener
-        closeButtonElement.addEventListener('click', hideModal);
-
-        //Escape Key Event Listener
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-                hideModal();
-            }
-        });
-
-        //Modal Container Event Listener
-        modalContainer.addEventListener('click', (e) => {
-            let target = e.target;
-            if (target === modalContainer) {
-                hideModal();
-            }
-        });
-
-        closeButtonElement.innerText = 'X';
-
-        //Add is-visible class and remove is-hidden class when modal is opened
-        modalContainer.classList.add('is-visible');
-        modalContainer.classList.remove('is-hidden');
-        
-
-        modal.appendChild(closeButtonElement);
-    } */
-
-    //Remove is-visible class and add is-hidden class (display:none) when modal is closed
-    /* function hideModal() {
-        let modalContainer = document.querySelector('#modal-container');
-        modalContainer.classList.remove('is-visible');
-        modalContainer.classList.add('is-hidden');
-    } */
 
     return {
         getAll,
@@ -311,7 +265,7 @@ function filterPokemonList(searchTerm) {
             let pokemonList = document.querySelector('.pokemon-list');
             pokemonList.innerHTML = '';
             let noResults = document.createElement('li');
-            noResults.classList.add('list__item');
+            noResults.classList.add('list-group-item');
             noResults.innerText = 'No Search Results Found';
 
             pokemonList.appendChild(noResults);
