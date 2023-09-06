@@ -141,6 +141,27 @@ let pokemonRepository = function () {
                 setTimeout(function () {
                     hideLoadingMessage();
                 }, 500);
+                return fetch(pokemon.detailsUrl).then(function (response) {
+                    return response.json();
+                }).then(function (details) {
+                    //Now we add the details to the pokemon
+                    pokemon.types = details.types;
+                    
+                    let pokemonTypesStr = '';
+                    pokemon.types.forEach(function (pokemon) {
+                        pokemonTypesStr = `${pokemonTypesStr} ${pokemon.type.name} `
+                    });
+
+                    pokemon.typesStr = pokemonTypesStr;
+        
+                    console.log(pokemonTypesStr)
+                }).catch(function (e) {
+                    console.error(e);
+                });
+
+
+                
+                
             });
         }).catch(function (e) {
             console.error(e);
@@ -161,6 +182,14 @@ let pokemonRepository = function () {
             pokemon.imageUrl = details.sprites.other.dream_world.front_default;
             pokemon.height = details.height;
             pokemon.types = details.types;
+            
+            let pokemonTypesStr = '';
+            pokemon.types.forEach(function (pokemon) {
+                pokemonTypesStr = `${pokemonTypesStr} ${pokemon.type.name} `
+            });
+
+            console.log(pokemonTypesStr)
+
             setTimeout(function () {
                 hideLoadingMessage();
             }, 500);
@@ -315,4 +344,42 @@ function showLoadingMessage() {
 function hideLoadingMessage() {
     let waitingScreen = document.querySelector('.waiting-screen');
     waitingScreen.classList.remove('is-visible');
+}
+
+let typeFilterButtons = document.querySelectorAll('.type-filter');
+
+typeFilterButtons.forEach(function (typeButton) {
+    let searchTerm = typeButton.value;
+    typeButton.addEventListener('click', function (){
+        filterPokemonListByType(searchTerm);
+    });
+})
+
+
+function filterPokemonListByType(searchTerm) {
+    if (searchTerm === '') {
+        printArrayDetails(pokemonRepository.getAll());
+    } else {
+        let filterPokemonList = pokemonRepository.getAll().filter(function (filterPokemon) {
+            let filterPokemonLC = filterPokemon.typesStr.toLowerCase();
+            let searchTermLC = searchTerm.toLowerCase();
+            return filterPokemonLC.includes(searchTermLC);
+        });
+        //Check if Pokemon was found
+        if (filterPokemonList.length === 0) {
+            let pokemonList = document.querySelector('.pokemon-list');
+            pokemonList.innerHTML = '';
+            let noResults = document.createElement('li');
+            noResults.classList.add('list__item');
+            noResults.innerText = 'No Search Results Found';
+
+            pokemonList.appendChild(noResults);
+            /* `<li class="list__item">
+                <p>No Search Results Found</p>
+            </div>`;  */
+            //if Pokemon was found, display on page
+        } else {
+            printArrayDetails(filterPokemonList);
+        }
+    }
 }
