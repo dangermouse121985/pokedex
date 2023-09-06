@@ -74,6 +74,7 @@ body {
     -webkit-backdrop-filter: blur(4px);
     -o-backdrop-filter: blur(4px);
     -moz-backdrop-filter: blur(4px);
+    z-index: 2;
 }
 
 .page-header__item {
@@ -133,25 +134,35 @@ form {
     border-radius: 3px;
 }
 
+.btn-group {
+    vertical-align: top;
+    z-index: 1;
+}
+
 .btn.filter,
-.btn.clear-filter {
+.btn.clear-filter,
+.btn-danger {
     padding: 0;
     vertical-align: baseline;
+    z-index: 1;
 }
+
 #search-button,
-#clear-filter-button {
+#clear-filter-button,
+.dropdown-toggle {
     font-family: 'Concert One', cursive;
     background-color: var(--secondary-color);
     color: var(--text-color);
     border: 1px solid var(--secondary-color);
     height: 30px;
-    width: 100px;
+    width: 220px;
     border-radius: 3px;
     transition: background-color 0.2s ease-in-out;
 }
 
 #search-button:hover,
-#clear-filter-button:hover {
+#clear-filter-button:hover,
+.dropdown-toggle:hover {
     background-color: var(--secondary-color-darker);
 }
 
@@ -280,7 +291,9 @@ button.close {
 
     #searchbox,
     #search-button,
-    #clear-filter-button {
+    #clear-filter-button,
+    .dropdown-toggle,
+    .btn-group {
         display: block;
         width: 99%;
         margin: 10px auto;

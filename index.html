@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple JS app</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css" type="text/css">
 </head>
 
 <body>
-    
+
     <header class="page-header">
         <a href="index.html"><img class="page-header__item pokemom-logo" src="images/pokemon-logo.png"
                 alt="Pokemon Logo"></a>
@@ -22,7 +23,7 @@
             </ul>
         </nav> -->
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -56,7 +57,7 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
             </div>
-          </nav>
+          </nav> -->
 
     </header>
 
@@ -68,34 +69,24 @@
 
     <main>
         <div class="search-bar">
-            
+
             <!-- <button class="filter">Search</button>
             <button class="clear-filter">Clear Filter</button> -->
             <form action="" method="dialog">
                 <input class="search-term" id="searchbox" type="text" placeholder="Search by Name">
-                <input type="Submit" id="search-button" name="Search" class="filter btn btn-primary">
-                <input type="button" id="clear-filter-button" name="Clear-Filter" value="Clear Filter" class="clear-filter btn btn-primary">
+                <input type="Submit" id="search-button" name="Search by Name" class="filter btn btn-primary">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" name="Search by Pokemon Types" value="Search by Pokemon Type">
+                        Search by Pokemon Type
+                    </button>
+                    <div id="pokemon-type__dropdown" class="dropdown-menu">
+                    </div>
+                </div>
+                <input type="button" id="clear-filter-button" name="Clear-Filter" value="Clear Filter"
+                    class="clear-filter btn btn-primary">
             </form>
         </div>
-
-        <input type="button" name="normal-search" class="btn btn-primary type-filter" value="normal">
-        <input type="button" name="fire-search" class="btn btn-primary type-filter" value="Fire">
-        <input type="button" name="water-search" class="btn btn-primary type-filter" value="water">
-        <input type="button" name="grass-search" class="btn btn-primary type-filter" value="grass">
-        <input type="button" name="electric-search" class="btn btn-primary type-filter" value="electric">
-        <input type="button" name="ice-search" class="btn btn-primary type-filter" value="ice">
-        <input type="button" name="fighting-search" class="btn btn-primary type-filter" value="fighting">
-        <input type="button" name="poison-search" class="btn btn-primary type-filter" value="poison">
-        <input type="button" name="ground-search" class="btn btn-primary type-filter" value="ground">
-        <input type="button" name="flying-search" class="btn btn-primary type-filter" value="flying">
-        <input type="button" name="psychic-search" class="btn btn-primary type-filter" value="psychic">
-        <input type="button" name="bug-search" class="btn btn-primary type-filter" value="bug">
-        <input type="button" name="rock-search" class="btn btn-primary type-filter" value="rock">
-        <input type="button" name="ghost-search" class="btn btn-primary type-filter" value="ghost">
-        <input type="button" name="dragon-search" class="btn btn-primary type-filter" value="dragon">
-        <input type="button" name="dark-search" class="btn btn-primary type-filter" value="dark">
-        <input type="button" name="steel-search" class="btn btn-primary type-filter" value="steel">
-        <input type="button" name="fairy-search" class="btn btn-primary type-filter" value="fairy">
 
 
         <ul class="pokemon-list">
@@ -107,7 +98,8 @@
         <div id="modal"></div>
     </div> -->
 
-    <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-label="pokemonModalLabel" aria-hidden="true">
+    <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-label="pokemonModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -127,9 +119,15 @@
     <footer>
 
     </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
     <script src="js/promise-polyfill.js"></script>
     <script src="js/fetch-polyfill.js"></script>
     <script src="js/script.js"></script>
