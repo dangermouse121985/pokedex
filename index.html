@@ -34,17 +34,15 @@
             <button class="clear-filter">Clear Filter</button> -->
             <form action="" method="dialog">
                 <input class="search-term" id="searchbox" type="text" placeholder="Search by Name">
-                <input type="Submit" id="search-button" name="Search" class="filter">
-                <input type="button" id="clear-filter-button" name="Clear-Filter" value="Clear Filter" class="clear-filter">
+                <input type="Submit" id="search-button" name="Search" class="filter btn btn-primary">
+                <input type="button" id="clear-filter-button" name="Clear-Filter" value="Clear Filter" class="clear-filter btn btn-primary">
             </form>
         </div>
 
 
-        <div class="container">
-            <div class="pokemon-list row">
+        <ul class="pokemon-list">
 
-            </div>
-        </div>
+        </ul>
     </main>
 
     <!-- <div id="modal-container">
@@ -55,7 +53,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title" id="pkemonModalLabel"></h5>
+                    <h1 class="modal-title" id="pokemonModalLabel"></h1>
                     <button type="button" class="close" data-dismiss="modal" aria-lable="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

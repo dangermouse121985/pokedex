@@ -39,33 +39,18 @@ let pokemonRepository = function () {
     //Query pokemon-list element and add Pokemon Object to list
     function addListItem(pokemon) {
         let pokemonList = document.querySelector('.pokemon-list');
-        let pokemonImageUrl = document.createElement('img');
-        pokemonImageUrl.classList.add('pokemon-list--image');
-
-
-        loadTest(pokemon).then(function () {
-
-            //Add Pokemon Image URL to Image Tag
-            pokemonImageUrl.src = pokemon.imageUrl;
-            
-        });
-
-
-        //let listItem = document.createElement('li');
-        //listItem.classList.add('list-group-item');
+        let listItem = document.createElement('li');
+        listItem.classList.add('list__item');
         let listItemButton = document.createElement('button');
-        listItemButton.classList.add('pokemon-tile');
+        listItemButton.classList.add('pokemon-tile', 'btn', 'btn-primary');
         listItemButton.setAttribute('data-toggle', 'modal');
         listItemButton.setAttribute('data-target', '#pokemonModal');
         listItemButton.innerText = pokemon.name;
+
         buttonClickListener(listItemButton, pokemon);
 
-        let listItemDiv = document.createElement('div');
-        listItemDiv.classList.add('col-lg-4','col-sm-12','col-md-6');
-
-        listItemButton.appendChild(pokemonImageUrl);
-        listItemDiv.appendChild(listItemButton);
-        pokemonList.appendChild(listItemDiv);
+        listItem.appendChild(listItemButton);
+        pokemonList.appendChild(listItem);
     }
 
     //Add event listener to to pokemon list item
@@ -125,7 +110,7 @@ let pokemonRepository = function () {
             pokemonTypesH2.innerText = 'Types';
             pokemon.types.forEach(function (pokemon) {
                 let pokemonTypesListItem = document.createElement('li');
-                pokemonTypesListItem.classList.add('list-group-item', 'pokemon-modal--list');
+                pokemonTypesListItem.classList.add('list-group-item');
                 pokemonTypesListItem.innerText = pokemon.type.name;
                 pokemonTypes.appendChild(pokemonTypesListItem);
                 console.log(`Pokemon Types: ${pokemon.type.name}`);
@@ -186,24 +171,48 @@ let pokemonRepository = function () {
             }, 500);
         });
     }
+    
+    //Query Modal and Create its Elements. Add event listeners to close if close button, is clicked, escape key is presses, and modal container is clicked.
+    /* function showModal() {
+        let modalContainer = document.querySelector('#modal-container');
+        let modal = document.querySelector('#modal');
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
 
-    function loadTest(pokemon) {
-        let url = pokemon.detailsUrl;
-        return fetch(url).then(function (response) {
-            return response.json();
-        }).then(function (details) {
-            //Now we add the details to the pokemon
-            pokemon.imageUrl = details.sprites.other.dream_world.front_default;
-            setTimeout(function () {
-                hideLoadingMessage();
-            }, 500);
-        }).catch(function (e) {
-            console.error(e);
-            setTimeout(function () {
-                hideLoadingMessage();
-            }, 500);
+        //Close Button Event Listener
+        closeButtonElement.addEventListener('click', hideModal);
+
+        //Escape Key Event Listener
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+                hideModal();
+            }
         });
-    }
+
+        //Modal Container Event Listener
+        modalContainer.addEventListener('click', (e) => {
+            let target = e.target;
+            if (target === modalContainer) {
+                hideModal();
+            }
+        });
+
+        closeButtonElement.innerText = 'X';
+
+        //Add is-visible class and remove is-hidden class when modal is opened
+        modalContainer.classList.add('is-visible');
+        modalContainer.classList.remove('is-hidden');
+        
+
+        modal.appendChild(closeButtonElement);
+    } */
+
+    //Remove is-visible class and add is-hidden class (display:none) when modal is closed
+    /* function hideModal() {
+        let modalContainer = document.querySelector('#modal-container');
+        modalContainer.classList.remove('is-visible');
+        modalContainer.classList.add('is-hidden');
+    } */
 
     return {
         getAll,
@@ -265,7 +274,7 @@ function filterPokemonList(searchTerm) {
             let pokemonList = document.querySelector('.pokemon-list');
             pokemonList.innerHTML = '';
             let noResults = document.createElement('li');
-            noResults.classList.add('list-group-item');
+            noResults.classList.add('list__item');
             noResults.innerText = 'No Search Results Found';
 
             pokemonList.appendChild(noResults);
