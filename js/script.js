@@ -239,7 +239,6 @@ pokemonRepository.loadList().then(function () {
 /*Iterate through the pokemonList for loop to print each pokemon with it's height.
 Conditional loop will add a largeBeast class and a mesage if the Pokemon is larger than 0.5m*/
 function printArrayDetails(pokemonArray) {
-    largestPokemon();
     let pokemonList = document.querySelector('.pokemon-list');
     pokemonList.innerHTML = '';
     pokemonArray.forEach(function (pokemon) {
