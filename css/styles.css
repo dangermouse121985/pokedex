@@ -9,15 +9,16 @@
     --secondary-color: #2b6cb5;
     --secondary-color-darker: rgb(27, 53, 111);
     --text-color: #fff;
+    --font-family: 'Concert One', cursive;
     --normal-font-size: 20px;
     --large-font-size: 30px;
 }
 
 body {
     background: var(--background-color);
-    font-family: 'Concert One', cursive;
+    font-family: var(--font-family);
     text-transform: capitalize;
-    font-weight: 200;
+    font-weight: 400;
 }
 
 .waiting-screen,
@@ -117,7 +118,7 @@ form {
 }
 
 .search-bar {
-    margin:100px 0 0 20px;
+    margin: 100px 0 0 20px;
     width: 100%;
 }
 
@@ -184,7 +185,7 @@ form {
 }
 
 a:not([href]):not([tabindex]) {
-    color: #fff;
+    color: var(--text-color);
 }
 
 a.dropdown-item__active {
@@ -222,8 +223,7 @@ a.dropdown-item__active {
 
 .pokemon-tile {
     display: flex;
-    font-family: 'Concert One', cursive;
-    font-size: var(--large-font-size);
+    font-family: var(--font-family);
     background-color: var(--primary-color);
     text-transform: capitalize;
     width: 100%;
@@ -234,7 +234,7 @@ a.dropdown-item__active {
     border-radius: 3px;
     align-items: center;
     text-align: center;
-    padding: 0 20px
+    padding: 0 20px;
 }
 
 .pokemon-title--modal,
@@ -261,11 +261,7 @@ a.dropdown-item__active {
 
 .modal-content {
     text-align: center;
-    /*width: 30%;
-    height: auto;*/
     background-color: var(--secondary-color-darker);
-    /*margin: auto;
-    padding: 10px;*/
     box-shadow: none;
     box-shadow: 0 5px 10px #000;
 }
