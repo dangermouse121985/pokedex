@@ -4,24 +4,20 @@
 :root {
     --theme-spacing: 10px;
     --primary-color: #f05d5d;
-    --primary-color-darker: #de2323;
+    --primary-color-darker: rgb(222, 35, 35);
     --background-color: #EAF2EF;
     --secondary-color: #2b6cb5;
     --secondary-color-darker: rgb(27, 53, 111);
     --text-color: #fff;
-
-    --test-color1: #EAF2EF;
-    --test-color2: #2b6cb5;
-    --test-color3: #2B6CB5;
-    --test-color4: #1B356F;
-    --test-color5: #F05D5E;
+    --normal-font-size: 20px;
+    --large-font-size: 30px;
 }
 
 body {
     background: var(--background-color);
     font-family: 'Concert One', cursive;
     text-transform: capitalize;
-    font-weight: 400;
+    font-weight: 200;
 }
 
 .waiting-screen,
@@ -113,7 +109,7 @@ a:visited {
 }
 
 p {
-    font-size: 20px;
+    font-size: var(--normal-font-size);
 }
 
 form {
@@ -132,6 +128,7 @@ form {
     height: 30px;
     width: 200px;
     border-radius: 3px;
+    font-size: var(--normal-font-size);
 }
 
 .btn-group {
@@ -151,11 +148,12 @@ form {
 #clear-filter-button,
 .dropdown-toggle {
     font-family: 'Concert One', cursive;
+    font-size: var(--normal-font-size);
     background-color: var(--secondary-color);
     color: var(--text-color);
     border: 1px solid var(--secondary-color);
-    height: 30px;
-    width: 220px;
+    height: 35px;
+    width: 260px;
     border-radius: 3px;
     transition: background-color 0.2s ease-in-out;
 }
@@ -166,9 +164,31 @@ form {
     background-color: var(--secondary-color-darker);
 }
 
-.largeBeasts {
-    font-weight: bold;
-    color: var(--background-color);
+.show>.btn-danger.dropdown-toggle {
+    background-color: var(--secondary-color-darker);
+}
+
+.btn-danger:not(:disabled):not(.disabled):active,
+.btn-danger:not(:disabled):not(.disabled):focus,
+.dropdown-toggle:active,
+.dropdown-toggle:focus {
+    background-color: var(--secondary-color-darker);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(27, 53, 111, .5);
+}
+
+#pokemon-type__dropdown {
+    text-align: center;
+    background-color: var(--secondary-color);
+    font-size: var(--normal-font-size);
+}
+
+a:not([href]):not([tabindex]) {
+    color: #fff;
+}
+
+a.dropdown-item__active {
+    background-color: var(--secondary-color-darker);
 }
 
 .pokemon-list {
@@ -192,18 +212,29 @@ form {
     border: 0;
     margin: 0;
     padding: 5px;
+    font-size: var(--normal-font-size);
+}
+
+.no-results {
+    color: var(--secondary-color-darker);
+    font-size: var(--normal-font-size);
 }
 
 .pokemon-tile {
+    display: flex;
     font-family: 'Concert One', cursive;
+    font-size: var(--large-font-size);
     background-color: var(--primary-color);
     text-transform: capitalize;
     width: 100%;
-    height: 60px;
+    height: 100px;
     border: none;
     color: var(--text-color);
     transition: background-color 0.2s ease-in-out;
     border-radius: 3px;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px
 }
 
 .pokemon-title--modal,
@@ -212,8 +243,20 @@ form {
     border-radius: 3px;
 }
 
-.pokemon-tile:hover {
+.pokemon-tile:hover,
+.pokemon-tile:focus,
+.pokemon-tile:active,
+.btn-primary:not(:disabled):not(.disabled):active {
     background-color: var(--primary-color-darker);
+    box-shadow: 0 0 0 0.2rem rgba(222, 35, 35, .5);
+    outline:none;
+}
+
+.pokemon-list--image {
+    position: relative;
+    margin: 0 10px 0 auto;
+    height: 80%;
+    max-width: 75px;
 }
 
 .modal-content {
@@ -223,6 +266,7 @@ form {
     background-color: var(--secondary-color-darker);
     /*margin: auto;
     padding: 10px;*/
+    box-shadow: none;
     box-shadow: 0 5px 10px #000;
 }
 
@@ -238,7 +282,7 @@ button.close {
 }
 
 .modal-body {
-    color: #fff;
+    color: var(--text-color);
 }
 
 .modal-title,
@@ -297,6 +341,10 @@ button.close {
         display: block;
         width: 99%;
         margin: 10px auto;
+    }
+
+    #pokemon-type__dropdown {
+        margin-top: 50px;
     }
 /* 
     #modal {
