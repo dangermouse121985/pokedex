@@ -161,7 +161,8 @@ let pokemonRepository = function () {
 
                     let pokemonTypesStr = '';
                     pokemon.types.forEach(function (pokemon) {
-                        pokemonTypesStr = `${pokemonTypesStr} ${pokemon.type.name} `
+                        pokemonTypesStr = `${pokemonTypesStr} ${pokemon.type.name} `;
+                        pokemon.imageUrl = details.sprites.other.dream_world.front_default;
                     });
 
                     pokemon.typesStr = pokemonTypesStr;
@@ -214,14 +215,8 @@ let pokemonRepository = function () {
         }).then(function (details) {
             //Now we add the details to the pokemon
             pokemon.imageUrl = details.sprites.other.dream_world.front_default;
-            setTimeout(function () {
-                hideLoadingMessage();
-            }, 500);
         }).catch(function (e) {
             console.error(e);
-            setTimeout(function () {
-                hideLoadingMessage();
-            }, 500);
         });
     }
 
@@ -241,28 +236,10 @@ pokemonRepository.loadList().then(function () {
     });
 });
 
-function largestPokemon() {
-    //Height of the currently largest Pokemon
-    let largestPokemonHeight = 0;
-    //Counter used to identify the last Pokemon tagged as the largest
-    let x = 0;
-    //Iterate through the pokemonList to find the largest Pokemon
-    pokemonRepository.getAll().forEach(function (pokemon, index) {
-        if (pokemon.height > largestPokemonHeight) {
-            largestPokemonHeight = pokemon.height;
-            pokemonRepository.getAll()[x].largestPokemon = false;
-            pokemon.largestPokemon = true;
-            x = index;
-        }
-    });
-}
-
-
 /*Iterate through the pokemonList for loop to print each pokemon with it's height.
 Conditional loop will add a largeBeast class and a mesage if the Pokemon is larger than 0.5m*/
 function printArrayDetails(pokemonArray) {
     largestPokemon();
-    //document.getElementById('grid').innerHTML = '';
     let pokemonList = document.querySelector('.pokemon-list');
     pokemonList.innerHTML = '';
     pokemonArray.forEach(function (pokemon) {
@@ -273,6 +250,10 @@ function printArrayDetails(pokemonArray) {
 //Filter list by search term
 function filterPokemonList(searchTerm, searchType) {
     if (searchTerm === '') {
+        showLoadingMessage();
+        setTimeout(() => {
+            hideLoadingMessage();
+        }, 500);
         printArrayDetails(pokemonRepository.getAll());
     } else {
         let filterPokemonList = pokemonRepository.getAll().filter(function (filterPokemon) {
@@ -297,17 +278,13 @@ function filterPokemonList(searchTerm, searchType) {
             noResults.innerText = 'No Search Results Found';
 
             pokemonList.appendChild(noResults);
-            /* `<li class="list__item">
-                <p>No Search Results Found</p>
-            </div>`;  */
+
             //if Pokemon was found, display on page
         } else {
             printArrayDetails(filterPokemonList);
         }
     }
 }
-
-//printArrayDetails(pokemonRepository.getAll());
 
 //Search Pokemon By Name
 let searchButton = document.querySelector('.filter');
@@ -320,14 +297,12 @@ searchButton.addEventListener('click', function () {
 let clearButton = document.querySelector('.clear-filter');
 clearButton.addEventListener('click', function () {
     filterPokemonList('');
-    document.querySelector('.search-term').value = '';
-
 });
 
 //Pokemon Types Dropdown Filter
 let typeDropdown = document.getElementById('pokemon-type__dropdown');
 let pokemonTypes = ['Normal', 'Fire', 'Water', 'Grass', 'Electric', 'Ice', 'Fighting', 'Poison', 'Ground',
-    'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy'];
+    'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon', 'Steel', 'Fairy'];
 
 let dropdownToggle = document.querySelector('.dropdown-toggle');
 dropdownToggle.addEventListener('click', function () {
@@ -371,8 +346,3 @@ typeFilterButtons.forEach(function (typeButton) {
         filterPokemonListByType(searchTerm);
     });
 });
-
-
-
-
-

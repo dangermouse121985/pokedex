@@ -51,6 +51,7 @@ body {
 }
 
 .waiting-screen h1 {
+    font-size: var(--large-font-size);
     position: fixed;
     top: 50%;
     width: 100%;
@@ -72,32 +73,11 @@ body {
     -o-backdrop-filter: blur(4px);
     -moz-backdrop-filter: blur(4px);
     z-index: 2;
+    overflow-x: hidden;
 }
 
-.page-header__item {
-    flex: 0 1 50px;
-}
-
-.page-header__item:first-child {
-    flex-shrink: 1;
-    width: 130px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+.navbar-brand {
     margin-left: 10px;
-}
-
-.page-header__item:last-child {
-    flex-grow: 1;
-    text-align: right;
-}
-
-.navigation-list__item {
-    list-style: none;
-    display: inline-block;
-    margin-left: 15px;
-    padding: 5px 10px;
-    text-align: center;
 }
 
 a {
@@ -119,7 +99,7 @@ form {
 
 .search-bar {
     margin: 100px 0 0 20px;
-    width: 100%;
+    width: 80%;
 }
 
 #searchbox {
@@ -224,6 +204,7 @@ a.dropdown-item__active {
 .pokemon-tile {
     display: flex;
     font-family: var(--font-family);
+    font-size: var(--large-font-size);
     background-color: var(--primary-color);
     text-transform: capitalize;
     width: 100%;
@@ -327,6 +308,7 @@ button.close {
 
     .search-bar {
         margin:100px 0 0 0px;
+        width: 100%;
     }
 
     #searchbox,
@@ -342,9 +324,9 @@ button.close {
     #pokemon-type__dropdown {
         margin-top: 50px;
     }
-/* 
-    #modal {
-        width: 90%;
-    } */
-    
+
+    .navbar-brand {
+        margin: 0;
+        right: auto;
+    }
 }
