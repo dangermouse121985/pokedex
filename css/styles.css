@@ -304,6 +304,13 @@ button.close {
         width: 99%;
         margin: 10px auto;
     }
+
+    #pokemon-type__dropdown {
+        text-align: center;
+        background-color: var(--secondary-color);
+        font-size: var(--normal-font-size);
+        margin-top: 60px;
+    }
 }
 @media screen and (max-width: 750px) {
 
