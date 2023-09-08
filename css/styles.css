@@ -99,7 +99,7 @@ form {
 
 .search-bar {
     margin: 100px 0 0 20px;
-    width: 80%;
+    width: 90%;
 }
 
 #searchbox {
@@ -285,25 +285,9 @@ button.close {
     line-height: 40px;
 }
 
-/* @media screen and (max-width: 1400px) {
-    #modal {
-        width: 50%;
-    }
-} */
-@media screen and (max-width: 750px) {
-
-    main {
-        margin: auto;
-        width: 90%
-    }
+@media screen and (max-width: 1200px) {
     .list__item {
-        display: block;
-        width: 100%;
-        padding: 10px 0;
-    }
-
-    form {
-        text-align: center;
+        width: 50%;
     }
 
     .search-bar {
@@ -319,6 +303,22 @@ button.close {
         display: block;
         width: 99%;
         margin: 10px auto;
+    }
+}
+@media screen and (max-width: 750px) {
+
+    main {
+        margin: auto;
+        width: 90%
+    }
+    .list__item {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    form {
+        text-align: center;
     }
 
     #pokemon-type__dropdown {
