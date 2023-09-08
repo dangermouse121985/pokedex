@@ -152,9 +152,6 @@ let pokemonRepository = (function () {
           };
 
           add(pokemon);
-          setTimeout(function () {
-            hideLoadingMessage();
-          }, 500);
           return fetch(pokemon.detailsUrl)
             .then(function (response) {
               return response.json();
@@ -173,6 +170,10 @@ let pokemonRepository = (function () {
               pokemon.typesStr = pokemonTypesStr;
 
               console.log(pokemonTypesStr);
+              
+          setTimeout(function () {
+            hideLoadingMessage();
+          }, 500);
             })
             .catch(function (e) {
               console.error(e);
