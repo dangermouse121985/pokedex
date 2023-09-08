@@ -159,12 +159,12 @@ let pokemonRepository = function () {
                     return response.json();
                 }).then(function (details) {
                     //Now we add the details to the pokemon
+                    pokemon.imageUrl = details.sprites.other.dream_world.front_default;
                     pokemon.types = details.types;
 
                     let pokemonTypesStr = '';
                     pokemon.types.forEach(function (pokemon) {
                         pokemonTypesStr = `${pokemonTypesStr} ${pokemon.type.name} `;
-                        pokemon.imageUrl = details.sprites.other.dream_world.front_default;
                     });
 
                     pokemon.typesStr = pokemonTypesStr;
