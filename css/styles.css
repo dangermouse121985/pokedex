@@ -378,8 +378,19 @@ button.close:hover {
         text-align: center;
     }
 
+    #searchbox,
+    #search-button,
+    #clear-filter-button,
+    .btn-group,
+    .pokemon-list {
+        display: block;
+        width: 100%;
+        margin: 10px auto;
+    }
+
     .search-bar {
         padding: 0;
+        width: 100%
     }
 
     #pokemon-type__dropdown {
