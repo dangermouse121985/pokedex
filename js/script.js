@@ -151,20 +151,19 @@ let pokemonRepository = function () {
                 };
 
                 add(pokemon);
-                
                 setTimeout(function () {
                     hideLoadingMessage();
-                }, 1000);
+                }, 500);
                 return fetch(pokemon.detailsUrl).then(function (response) {
                     return response.json();
                 }).then(function (details) {
+                    pokemon.imageUrl = details.sprites.other.dream_world.front_default;
                     //Now we add the details to the pokemon
                     pokemon.types = details.types;
 
                     let pokemonTypesStr = '';
                     pokemon.types.forEach(function (pokemon) {
                         pokemonTypesStr = `${pokemonTypesStr} ${pokemon.type.name} `;
-                        pokemon.imageUrl = details.sprites.other.dream_world.front_default;
                     });
 
                     pokemon.typesStr = pokemonTypesStr;
@@ -196,7 +195,7 @@ let pokemonRepository = function () {
 
             let pokemonTypesStr = '';
             pokemon.types.forEach(function (pokemon) {
-                pokemonTypesStr = `${pokemonTypesStr} ${pokemon.type.name} `
+                pokemonTypesStr = `${pokemonTypesStr} ${pokemon.type.name}`;
             });
 
             setTimeout(function () {
