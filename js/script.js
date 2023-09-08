@@ -362,11 +362,17 @@ pokemonTypes.forEach(function (type) {
 //Show Loading Message
 function showLoadingMessage() {
   let waitingScreen = document.querySelector('.waiting-screen');
+  waitingScreen.classList.remove('fadeout');
   waitingScreen.classList.add('is-visible');
 }
 
 //Hide Loading Message
 function hideLoadingMessage() {
   let waitingScreen = document.querySelector('.waiting-screen');
-  waitingScreen.classList.remove('is-visible');
+  waitingScreen.classList.add('fadeout');
+  setTimeout(function () {
+    waitingScreen.classList.remove('is-visible');
+  }, 300);
+
+  
 }

@@ -37,10 +37,8 @@ body {
     padding: 0 auto;
     box-sizing: border-box;
     color: var(--text-color);
-
     /* to allow scrolling if the screen is not high enough */
     overflow: auto;
-
     /* this is used to center the modal */
     display: grid;
     text-align: center;
@@ -58,6 +56,11 @@ body {
     text-align: center;
     color: var(--text-color);
 }
+
+.fadeout {
+    opacity: 0;
+    transition: opacity .2s linear;
+  }
 
 .page-header {
     position: fixed;
