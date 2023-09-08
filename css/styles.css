@@ -105,8 +105,9 @@ form {
 }
 
 .search-bar {
-    margin: 100px 0 0 20px;
-    width: 90%;
+    margin: 100px auto 0 auto;
+    width: 80%;
+    text-align: center;
 }
 
 #searchbox {
@@ -114,7 +115,7 @@ form {
     color: var(--secondary-color);
     font-family: 'Concert One', cursive;
     height: 30px;
-    width: 200px;
+    width: 20%;
     border-radius: 3px;
     font-size: var(--normal-font-size);
 }
@@ -141,9 +142,13 @@ form {
     color: var(--text-color);
     border: 1px solid var(--secondary-color);
     height: 35px;
-    width: 260px;
+    width: 20%;
     border-radius: 3px;
     transition: background-color 0.2s ease-in-out;
+}
+
+.btn-group {
+    width: 20%;
 }
 
 #search-button:hover,
@@ -180,7 +185,7 @@ a.dropdown-item__active {
 }
 
 .pokemon-list {
-    width: 100%;
+    width: 70%;
     list-style: none;
     padding-inline-start: 0px;
     margin: var(--theme-spacing) auto;
@@ -286,13 +291,44 @@ button.close {
     line-height: 50px;
 }
 
+.modal-header .close {
+    margin: -.5rem -.5rem -.5rem auto;
+    padding: 0;
+    
+    text-align: center;
+}
+
+button.close {
+    opacity: 1;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    
+    text-align: center;
+}
+
+button.close:hover {
+    color: var(--text-color);
+}
+
+.close-button {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.close {
+    text-shadow: 0 0 0 var(--text-color);
+}
+
 .height-title,
 .types-title {
     height: 40px;
     line-height: 40px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1500px) {
     .navbar {
         width: 100%;
     }
@@ -302,20 +338,24 @@ button.close {
     }
 
     .search-bar {
-        margin:100px 0 0 0px;
+        margin: 100px 0 0 0;
         width: 100%;
+        padding: 0 10px;
     }
 
     #searchbox,
     #search-button,
     #clear-filter-button,
-    .dropdown-toggle,
     .btn-group {
         display: block;
-        width: 99%;
+        width: 70%;
         margin: 10px auto;
     }
 
+    .dropdown-toggle {
+        margin: 0 0;
+        width: 100%
+    }
     #pokemon-type__dropdown {
         text-align: center;
         background-color: var(--secondary-color);
@@ -323,7 +363,7 @@ button.close {
         margin-top: 60px;
     }
 }
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 900px) {
     main {
         margin: auto;
         width: 90%
@@ -338,12 +378,15 @@ button.close {
         text-align: center;
     }
 
+    .search-bar {
+        padding: 0;
+    }
+
     #pokemon-type__dropdown {
         margin-top: 50px;
     }
 
     .navbar-brand {
-        margin: 0;
         right: auto;
     }
 }
