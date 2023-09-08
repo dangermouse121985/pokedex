@@ -124,7 +124,6 @@ let pokemonRepository = (function () {
         pokemonTypesListItem.classList.add('list-group-item');
         pokemonTypesListItem.innerText = pokemon.type.name;
         pokemonTypes.appendChild(pokemonTypesListItem);
-        console.log(`Pokemon Types: ${pokemon.type.name}`);
       });
 
       //modalTitle.appendChild(pokemonTitle);
@@ -159,6 +158,9 @@ let pokemonRepository = (function () {
             .then(function (details) {
               pokemon.imageUrl =
                 details.sprites.other.dream_world.front_default;
+                setTimeout(function () {
+                  hideLoadingMessage();
+                }, 300);
               //Now we add the details to the pokemon
               pokemon.types = details.types;
 
@@ -168,12 +170,8 @@ let pokemonRepository = (function () {
               });
 
               pokemon.typesStr = pokemonTypesStr;
-
-              console.log(pokemonTypesStr);
               
-          setTimeout(function () {
-            hideLoadingMessage();
-          }, 500);
+          
             })
             .catch(function (e) {
               console.error(e);
