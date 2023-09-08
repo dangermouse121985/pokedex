@@ -33,19 +33,18 @@
             <!-- <button class="filter">Search</button>
             <button class="clear-filter">Clear Filter</button> -->
             <form action="" method="dialog">
-                <input class="search-term" id="searchbox" type="text" placeholder="Search by Name">
-                <input type="Submit" id="search-button" name="Search by Name" class="filter btn btn-primary">
+                <input class="search-term" id="searchbox" type="text" placeholder="Search by Name" aria-label="Search By Pokemon Name">
+                <input type="Submit" id="search-button" name="Search by Name" class="filter btn btn-primary" aria-label="Search by Pokemon Name Submit Button">
                 <div class="btn-group">
                     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" name="Search by Pokemon Types"
-                        value="Search by Pokemon Type">
-                        Search by Pokemon Type
+                        aria-haspopup="true" aria-expanded="false">
+                        Filter by Pokemon Type
                     </button>
-                    <div id="pokemon-type__dropdown" class="dropdown-menu">
+                    <div id="pokemon-type__dropdown" class="dropdown-menu" role="menu">
                     </div>
                 </div>
                 <input type="button" id="clear-filter-button" name="Clear-Filter" value="Clear Filter"
-                    class="clear-filter btn btn-primary">
+                    class="clear-filter btn btn-primary" aria-label="Clear All Filters">
             </form>
         </div>
 
@@ -80,6 +79,7 @@
     <footer>
 
     </footer>
+    <script src="js/tota11y.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

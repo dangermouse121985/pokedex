@@ -53,6 +53,7 @@ let pokemonRepository = function () {
         loadPokemonThumbnail(pokemon).then(function () {
             //Add Pokemon Image URL to Image Tag
             pokemonImageUrl.src = pokemon.imageUrl;
+            pokemonImageUrl.alt = `Thumbnail image of ${pokemon.name}`;
         });
 
         buttonClickListener(listItemButton, pokemon);
@@ -106,6 +107,7 @@ let pokemonRepository = function () {
 
             //Add Pokemon Image URL to Image Tag
             pokemonImageUrl.src = pokemon.imageUrl;
+            pokemonImageUrl.alt = `Image of ${pokemon.name}`
 
             //Add Pokemon Height to Height Tag
             pokemonHeightH2.innerText = 'Height';
@@ -312,6 +314,7 @@ dropdownToggle.addEventListener('click', function () {
 pokemonTypes.forEach(function (type) {
     let typeLink = document.createElement('a');
     typeLink.classList.add('dropdown-item', type);
+    typeLink.setAttribute('href', '#');
     typeLink.innerText = type;
     typeLink.addEventListener('click', function () {
         filterPokemonList(type, 'pokemonType');
