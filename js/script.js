@@ -43,7 +43,7 @@ let pokemonRepository = (function () {
   function addListItem(pokemon) {
     let pokemonList = document.querySelector('.pokemon-list');
     let listItem = document.createElement('li');
-    listItem.classList.add('list__item');
+    listItem.classList.add('list__item', 'list-group-item');
     let listItemButton = document.createElement('button');
     listItemButton.classList.add('pokemon-tile', 'btn', 'btn-primary');
     listItemButton.setAttribute('data-toggle', 'modal');
@@ -121,7 +121,7 @@ let pokemonRepository = (function () {
       pokemonTypesH2.innerText = 'Types';
       pokemon.types.forEach(function (pokemon) {
         let pokemonTypesListItem = document.createElement('li');
-        pokemonTypesListItem.classList.add('list-group-item');
+        pokemonTypesListItem.classList.add('list-group-item', 'types-list-item');
         pokemonTypesListItem.innerText = pokemon.type.name;
         pokemonTypes.appendChild(pokemonTypesListItem);
       });
@@ -151,31 +151,7 @@ let pokemonRepository = (function () {
           };
 
           add(pokemon);
-          return fetch(pokemon.detailsUrl)
-            .then(function (response) {
-              return response.json();
-            })
-            .then(function (details) {
-              pokemon.imageUrl =
-                details.sprites.other.dream_world.front_default;
-                setTimeout(function () {
-                  hideLoadingMessage();
-                }, 300);
-              //Now we add the details to the pokemon
-              pokemon.types = details.types;
-
-              let pokemonTypesStr = '';
-              pokemon.types.forEach(function (pokemon) {
-                pokemonTypesStr = `${pokemonTypesStr} ${pokemon.type.name} `;
-              });
-
-              pokemon.typesStr = pokemonTypesStr;
-              
-          
-            })
-            .catch(function (e) {
-              console.error(e);
-            });
+          loadPokemonThumbnail(pokemon);
         });
       })
       .catch(function (e) {
@@ -218,18 +194,32 @@ let pokemonRepository = (function () {
   }
 
   function loadPokemonThumbnail(pokemon) {
-    let url = pokemon.detailsUrl;
-    return fetch(url)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (details) {
-        //Now we add the details to the pokemon
-        pokemon.imageUrl = details.sprites.other.dream_world.front_default;
-      })
-      .catch(function (e) {
-        console.error(e);
-      });
+    /* let url = pokemon.detailsUrl; */
+    return fetch(pokemon.detailsUrl)
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (details) {
+              pokemon.imageUrl =
+                details.sprites.other.dream_world.front_default;
+                setTimeout(function () {
+                  hideLoadingMessage();
+                }, 300);
+              //Now we add the details to the pokemon
+              pokemon.types = details.types;
+
+              let pokemonTypesStr = '';
+              pokemon.types.forEach(function (pokemon) {
+                pokemonTypesStr = `${pokemonTypesStr} ${pokemon.type.name} `;
+              });
+
+              pokemon.typesStr = pokemonTypesStr;
+              
+          
+            })
+            .catch(function (e) {
+              console.error(e);
+            });
   }
 
   return {
