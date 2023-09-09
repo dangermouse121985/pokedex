@@ -37,9 +37,7 @@ body {
     padding: 0 auto;
     box-sizing: border-box;
     color: var(--text-color);
-    /* to allow scrolling if the screen is not high enough */
     overflow: auto;
-    /* this is used to center the modal */
     display: grid;
     text-align: center;
 }
@@ -206,11 +204,6 @@ a.dropdown-item__active {
     color: var(--text-color);
     min-height: auto;
     padding: 10px var(--theme-spacing);
-}
-
-.list__item {
-    
-    
 }
 
 .types-list-item {
