@@ -141,7 +141,7 @@ let pokemonRepository = (function () {
   }
 
   //Get Pokemon from apiUrl (https://pokeapi.co/api/v2/pokemon/?limit=150)
-  const loadList = async (offset, limit) => {
+  const loadList = async (offset, limit) => { 
     console.log(offset);
     showLoadingMessage();
     if (offset === undefined) {
@@ -303,21 +303,6 @@ function printArrayDetails(pokemonArray) {
 
 //Filter list by search term
 function filterPokemonList(searchTerm, searchType) {
-  const loadPokemon = async (offset, limit) => {
-    // show the loader 
-    showLoadingMessage();
-    try {
-        // if having more facts to fetch 
-        
-            // call the API to get facts 
-            const response = await loadList(offset, limit);
-            printArrayDetails(pokemonRepository.getAll());
-    } catch (error) {
-        console.log(error.message);
-    } finally {
-        hideLoadingMessage();
-    }
-};
   if (searchTerm === '') {
     
     showLoadingMessage();
