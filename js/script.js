@@ -167,7 +167,9 @@ let pokemonRepository = (function () {
             add(pokemon);
             loadPokemonThumbnail(pokemon);
           }
-
+          setTimeout(function () {
+            hideLoadingMessage();
+          }, 500);
 
         });
       })
@@ -200,8 +202,13 @@ let pokemonRepository = (function () {
       }
     } catch (error) {
       console.log(error.message);
+      setTimeout(function () {
+        hideLoadingMessage();
+      }, 500);
     } finally {
-      hideLoadingMessage();
+      setTimeout(function () {
+        hideLoadingMessage();
+      }, 500);
     }
   };
 
@@ -262,7 +269,7 @@ let pokemonRepository = (function () {
           details.sprites.other.dream_world.front_default;
         setTimeout(function () {
           hideLoadingMessage();
-        }, 500);
+        }, 1000);
         //Now we add the details to the pokemon
         pokemon.types = details.types;
 
@@ -320,7 +327,6 @@ function filterPokemonList(searchTerm, searchType) {
 
       showLoadingMessage();
       setTimeout(() => {
-
         hideLoadingMessage();
       }, 500);
       printArrayDetails(pokemonRepository.getAll());
