@@ -262,7 +262,7 @@ let pokemonRepository = (function () {
           details.sprites.other.dream_world.front_default;
         setTimeout(function () {
           hideLoadingMessage();
-        }, 300);
+        }, 500);
         //Now we add the details to the pokemon
         pokemon.types = details.types;
 
@@ -277,6 +277,9 @@ let pokemonRepository = (function () {
       })
       .catch(function (e) {
         console.error(e);
+        setTimeout(function () {
+          hideLoadingMessage();
+        }, 500);
       });
   }
 
