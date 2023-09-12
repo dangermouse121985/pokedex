@@ -157,8 +157,7 @@ let pokemonRepository = (function () {
       })
       .then(function (json) {
         json.results.forEach(function (item) {
-          let capsItemName = item.name;
-          //CHeck if Pokemon already exists in pokemonList
+          //Check if Pokemon already exists in pokemonList
           let itemNameInPokemonList = pokemonList.find(o => o.name === item.name);
           if (itemNameInPokemonList === undefined) {
             let pokemon = {
