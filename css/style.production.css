@@ -397,7 +397,7 @@ button.close {
   position: relative;
   width: 100%;
   height: 50px;
-  line-height: 50px;
+  line-height: 100%;
 }
 
 .modal-header .close {
@@ -432,7 +432,7 @@ button.close:hover {
 .height-title,
 .types-title {
   height: 40px;
-  line-height: 40px;
+  line-height: 100%;
 }
 
 @media screen and (max-width: 1500px) {
@@ -444,16 +444,18 @@ button.close:hover {
     width: 50%;
   }
 
-  .pokemon-tile div{
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-
   .search-bar {
     margin: 100px 0 0 0;
     width: 100%;
     padding: 0 10px;
+  }
+
+  .btn {
+    line-height: 150%;
+  }
+
+  .close {
+    line-height: 100%;
   }
 
   #searchbox,
@@ -501,6 +503,7 @@ button.close:hover {
     display: block;
     width: 100%;
     margin: 10px auto;
+    text-align: center;
   }
 
   .search-bar {
