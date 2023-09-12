@@ -340,10 +340,6 @@ button.close:hover {
         width: 50%;
     }
 
-    .pokemon-tile {
-        align-items: center;
-    }
-
     .search-bar {
         margin: 100px 0 0 0;
         width: 100%;
@@ -393,6 +389,7 @@ button.close:hover {
         display: block;
         width: 100%;
         margin: 10px auto;
+        text-align: center;
     }
 
     .search-bar {
