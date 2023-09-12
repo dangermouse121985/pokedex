@@ -444,6 +444,12 @@ button.close:hover {
     width: 50%;
   }
 
+  .pokemon-tile {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+
   .search-bar {
     margin: 100px 0 0 0;
     width: 100%;
