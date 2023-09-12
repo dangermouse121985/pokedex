@@ -21,13 +21,11 @@ body {
     font-weight: 400;
 }
 
-.waiting-screen,
-.modal-container {
+.waiting-screen {
     display: none;
 }
 
-.waiting-screen.is-visible,
-#modal-container.is-visible {
+.waiting-screen.is-visible{
     position: fixed;
     top: 0;
     left: 0;
@@ -301,7 +299,6 @@ button.close {
 .modal-header .close {
     margin: -.5rem -.5rem -.5rem auto;
     padding: 0;
-    
     text-align: center;
 }
 
@@ -312,7 +309,6 @@ button.close {
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    
     text-align: center;
 }
 

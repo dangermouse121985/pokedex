@@ -1,7 +1,6 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
 
-
   let currentOffset = 0;
   const limit = 30;
   let total = 150;
@@ -143,6 +142,7 @@ let pokemonRepository = (function () {
   //Get Pokemon from apiUrl (https://pokeapi.co/api/v2/pokemon/?limit=150)
   const loadList = async (offset, limit) => {
     showLoadingMessage();
+    //if Search or clear filter is done load all 150 Pokemon, otherwise load number of Pokemon (defined by limit) on scroll
     if (offset === undefined) {
       currentOffset = total;
       apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
@@ -158,6 +158,7 @@ let pokemonRepository = (function () {
       .then(function (json) {
         json.results.forEach(function (item) {
           let capsItemName = item.name;
+          //CHeck if Pokemon already exists in pokemonList
           let itemNameInPokemonList = pokemonList.find(o => o.name === item.name);
           if (itemNameInPokemonList === undefined) {
             let pokemon = {
@@ -181,6 +182,7 @@ let pokemonRepository = (function () {
       });
   }
 
+  //define start index of next API load (up to defined total)
   const hasMorePokemon = (offset, limit, total) => {
     const startIndex = (offset) + limit;
     return startIndex < total + 1;
@@ -212,6 +214,7 @@ let pokemonRepository = (function () {
     }
   };
 
+  //Listen for scroll event to load addition Pokemon from API
   window.addEventListener('scroll', () => {
     const {
       scrollTop,
@@ -227,7 +230,7 @@ let pokemonRepository = (function () {
     passive: true
   });
 
-  //Get Pokemon Details from API
+  //Get individual Pokemon Details from API
   function loadDetails(pokemon) {
     showLoadingMessage();
     let url = pokemon.detailsUrl;
@@ -258,8 +261,8 @@ let pokemonRepository = (function () {
       });
   }
 
+  //Get Pokemon Image to load into each Pokemon Tile
   function loadPokemonThumbnail(pokemon) {
-    /* let url = pokemon.detailsUrl; */
     return fetch(pokemon.detailsUrl)
       .then(function (response) {
         return response.json();
@@ -290,8 +293,8 @@ let pokemonRepository = (function () {
       });
   }
 
+  //Load Pokemon List
   loadList(currentOffset, limit).then(function () {
-    //Now the data is loaded!
     getAll().forEach(function (pokemon) {
       addListItem(pokemon);
     });
@@ -306,8 +309,6 @@ let pokemonRepository = (function () {
     loadPokemon
   };
 })();
-
-
 
 /*Iterate through the pokemonList for loop to print each pokemon with it's height.
 Conditional loop will add a largeBeast class and a mesage if the Pokemon is larger than 0.5m*/
@@ -400,6 +401,7 @@ let pokemonTypes = [
   'Fairy',
 ];
 
+//Define Types Dropdown Filter Items
 let dropdownToggle = document.querySelector('.dropdown-toggle');
 dropdownToggle.addEventListener('click', function () {
   let toggleWidth = dropdownToggle.offsetWidth;
@@ -439,6 +441,4 @@ function hideLoadingMessage() {
   setTimeout(function () {
     waitingScreen.classList.remove('is-visible');
   }, 300);
-
-
 }
