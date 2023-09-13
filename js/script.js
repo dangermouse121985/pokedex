@@ -3,7 +3,7 @@ let pokemonRepository = (function () {
 
   let currentOffset = 0;
   const limit = 30;
-  let total = 150;
+  let totalPokemon = 150;
   let apiUrl = `https://pokeapi.co/api/v2/pokemon/?offset=${currentOffset}&limit=${limit}`;
 
   //Return an array of all Pokemon
@@ -144,8 +144,8 @@ let pokemonRepository = (function () {
     showLoadingMessage();
     //if Search or clear filter is done load all 150 Pokemon, otherwise load number of Pokemon (defined by limit) on scroll
     if (offset === undefined) {
-      currentOffset = total;
-      apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+      currentOffset = totalPokemon;
+      apiUrl = `https://pokeapi.co/api/v2/pokemon/?limit=${totalPokemon}`;
     } else {
 
       apiUrl = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`;
@@ -181,23 +181,28 @@ let pokemonRepository = (function () {
       });
   }
 
-  //define start index of next API load (up to defined total)
-  const hasMorePokemon = (offset, limit, total) => {
+  //define start index of next API load (up to defined totalPokemon)
+  const hasMorePokemon = (offset, limit, totalPokemon) => {
     const startIndex = (offset) + limit;
-    return startIndex < total + 1;
+    return startIndex < totalPokemon + 1;
   }
 
   const loadPokemon = async (offset, limit) => {
-    // show the loader 
-    showLoadingMessage();
+    // show the loader
+    if (offset < totalPokemon) {
+      showLoadingMessage();
+    }
+    console.log(offset, limit) 
     try {
       // if having more facts to fetch 
       if (!offset) {
+        // eslint-disable-next-line no-unused-vars
         const response = await loadList();
       }
-      else if (hasMorePokemon(offset, limit, total)) {
+      else if (hasMorePokemon(offset, limit, totalPokemon)) {
 
         // call the API to get facts 
+        // eslint-disable-next-line no-unused-vars
         const response = await loadList(offset, limit);
         printArrayDetails(pokemonRepository.getAll());
       }
@@ -221,7 +226,7 @@ let pokemonRepository = (function () {
       clientHeight
     } = document.documentElement;
     if (scrollTop + clientHeight >= scrollHeight - 5 &&
-      hasMorePokemon(currentOffset, limit, total)) {
+      hasMorePokemon(currentOffset, limit, totalPokemon)) {
       currentOffset = currentOffset + 30;
       loadPokemon(currentOffset, limit);
     }
@@ -288,7 +293,7 @@ let pokemonRepository = (function () {
         console.error(e);
         setTimeout(function () {
           hideLoadingMessage();
-        }, 500);
+        }, 1000);
       });
   }
 
