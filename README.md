@@ -14,7 +14,7 @@ The key features include:
 - The app will display a list of Pokemon loaded from the API.
   - The list will include the Pokemon's name and image
 - The app will enable the user to view additional details for each Pokemon on demand by clicking on the Pokemon tile
--  The app has CSS styling
+-  The app has CSS styling using Bootstrap
 -  The app uses Javascript linted with ESLint rules and formatted by Prettier
 -  The app uses at least one additional complex UI Pattern
    - I used modals to display the Pokemon details
