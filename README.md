@@ -29,5 +29,10 @@ The key features include:
   - The search and filter functions will pull the entire list of Pokemon (if they are not loaded), then perform the search/filter
 
 ## App Images
+### Pokemon List
+The following image shows the Pokedex's mobile version. Each Pokemon will be loaded in a single column
 ![Pokemon List](readme-images/pokemon-details-modal.png)
+
+### Pokemon Modal
+The modal will display an image of the Pokemon along with it's height and Type
 ![Pokemon Modal](readme-images/pokemon-list.png)
