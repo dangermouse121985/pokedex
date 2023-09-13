@@ -1,0 +1,521 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Concert+One&display=swap");
+
+body {
+  background: #EAF2EF;
+  font-family: "Concert One", cursive;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+
+.waiting-screen {
+  display: none;
+}
+
+.waiting-screen.is-visible {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0 auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #fff;
+  overflow: auto;
+  display: -ms-grid;
+  display: grid;
+  text-align: center;
+}
+
+.waiting-screen {
+  z-index: 10000;
+}
+
+.waiting-screen h1 {
+  font-size: 30px;
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.fadeout {
+  opacity: 0;
+  -webkit-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(27, 53, 111, 0.97);
+  -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.9);
+          box-shadow: 0 4px 4px rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  -o-backdrop-filter: blur(4px);
+  -moz-backdrop-filter: blur(4px);
+  z-index: 2;
+  overflow-x: hidden;
+}
+
+.navbar-brand {
+  margin-left: 10px;
+  width: 100%;
+  height: 55px;
+  text-align: center;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.pokemon-logo {
+  height: 100%;
+}
+
+a:visited {
+  color: #fff;
+}
+
+p {
+  font-size: 20px;
+}
+
+form {
+  width: 100%;
+}
+
+.search-bar {
+  margin: 100px auto 0 auto;
+  width: 80%;
+  text-align: center;
+}
+
+#searchbox {
+  border: 1px solid #2b6cb5;
+  color: #2b6cb5;
+  font-family: "Concert One", cursive;
+  height: 30px;
+  width: 20%;
+  border-radius: 3px;
+  font-size: 20px;
+}
+
+.btn-group {
+  vertical-align: top;
+  z-index: 1;
+}
+
+.btn.filter,
+.btn.clear-filter,
+.btn-danger {
+  padding: 0;
+  vertical-align: baseline;
+  z-index: 1;
+}
+
+#search-button {
+  font-family: "Concert One", cursive;
+  font-size: 20px;
+  background-color: #2b6cb5;
+  color: #fff;
+  border: 1px solid #2b6cb5;
+  height: 35px;
+  width: 20%;
+  border-radius: 3px;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#clear-filter-button {
+  font-family: "Concert One", cursive;
+  font-size: 20px;
+  background-color: #2b6cb5;
+  color: #fff;
+  border: 1px solid #2b6cb5;
+  height: 35px;
+  width: 20%;
+  border-radius: 3px;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown-toggle {
+  font-family: "Concert One", cursive;
+  font-size: 20px;
+  background-color: #2b6cb5;
+  color: #fff;
+  border: 1px solid #2b6cb5;
+  height: 35px;
+  width: 20%;
+  border-radius: 3px;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-group {
+  width: 20%;
+}
+
+#search-button:hover {
+  background-color: rgb(27, 53, 111);
+}
+
+#clear-filter-button:hover {
+  background-color: rgb(27, 53, 111);
+}
+
+.dropdown-toggle:hover {
+  background-color: rgb(27, 53, 111);
+}
+
+.show > .btn-danger.dropdown-toggle {
+  background-color: rgb(27, 53, 111);
+}
+
+.btn-danger:not(:disabled):not(.disabled):active {
+  background-color: rgb(27, 53, 111);
+  border-color: #2b6cb5;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(27, 53, 111, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(27, 53, 111, 0.5);
+}
+
+.btn-danger:not(:disabled):not(.disabled):focus {
+  background-color: rgb(27, 53, 111);
+  border-color: #2b6cb5;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(27, 53, 111, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(27, 53, 111, 0.5);
+}
+
+.dropdown-toggle:active {
+  background-color: rgb(27, 53, 111);
+  border-color: #2b6cb5;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(27, 53, 111, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(27, 53, 111, 0.5);
+}
+
+.dropdown-toggle:focus {
+  background-color: rgb(27, 53, 111);
+  border-color: #2b6cb5;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(27, 53, 111, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(27, 53, 111, 0.5);
+}
+
+#pokemon-type__dropdown {
+  text-align: center;
+  background-color: #2b6cb5;
+  font-size: 20px;
+}
+
+a:not([href]):not([tabindex]) {
+  color: #fff;
+}
+
+a.dropdown-item__active {
+  background-color: rgb(27, 53, 111);
+}
+
+.list-group {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.pokemon-list {
+  width: 70%;
+  list-style: none;
+  -webkit-padding-start: 0px;
+          padding-inline-start: 0px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.pokemon-list .list-group-item {
+  border-width: 0;
+  background-color: #EAF2EF;
+  width: 33%;
+  color: #fff;
+  min-height: auto;
+  padding: 10px 10px;
+}
+
+.types-list-item {
+  width: 100%;
+  background-color: rgb(27, 53, 111);
+  border: 0;
+  margin: 0;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.no-results {
+  color: rgb(27, 53, 111);
+  font-size: 20px;
+}
+
+.pokemon-tile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: "Concert One", cursive;
+  font-size: 30px;
+  background-color: #f05d5d;
+  text-transform: capitalize;
+  width: 100%;
+  height: 100px;
+  border: none;
+  color: #fff;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 3px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.pokemon-title--modal,
+.height-title,
+.types-title {
+  border-radius: 3px;
+}
+
+.pokemon-tile:hover {
+  background-color: rgb(222, 35, 35);
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(222, 35, 35, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(222, 35, 35, 0.5);
+  outline: none;
+}
+
+.pokemon-tile:focus {
+  background-color: rgb(222, 35, 35);
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(222, 35, 35, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(222, 35, 35, 0.5);
+  outline: none;
+}
+
+.pokemon-tile:active {
+  background-color: rgb(222, 35, 35);
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(222, 35, 35, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(222, 35, 35, 0.5);
+  outline: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+  background-color: rgb(222, 35, 35);
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(222, 35, 35, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(222, 35, 35, 0.5);
+  outline: none;
+}
+
+.pokemon-list--image {
+  position: relative;
+  margin: 0 10px 0 auto;
+  height: 80%;
+  max-width: 75px;
+}
+
+.modal-content {
+  text-align: center;
+  background-color: rgb(27, 53, 111);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-box-shadow: 0 5px 10px #000;
+          box-shadow: 0 5px 10px #000;
+}
+
+.pokemon-image {
+  width: 50%;
+  max-height: 180px;
+  -webkit-filter: drop-shadow(0 1px 5px black);
+          filter: drop-shadow(0 1px 5px black);
+}
+
+button.close {
+  position: absolute;
+  right: 15px;
+}
+
+.modal-body {
+  color: #fff;
+}
+
+.modal-title {
+  background-color: #f05d5d;
+  margin: 30px;
+  text-align: center;
+  -webkit-box-shadow: 0 1px 5px #000;
+          box-shadow: 0 1px 5px #000;
+  color: #000;
+}
+
+.height-title {
+  background-color: #f05d5d;
+  margin: 30px;
+  text-align: center;
+  -webkit-box-shadow: 0 1px 5px #000;
+          box-shadow: 0 1px 5px #000;
+  color: #000;
+}
+
+.types-title {
+  background-color: #f05d5d;
+  margin: 30px;
+  text-align: center;
+  -webkit-box-shadow: 0 1px 5px #000;
+          box-shadow: 0 1px 5px #000;
+  color: #000;
+}
+
+.modal-title {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  line-height: 100%;
+}
+
+.modal-header .close {
+  margin: -0.5rem -0.5rem -0.5rem auto;
+  padding: 0;
+  text-align: center;
+}
+
+button.close {
+  opacity: 1;
+  color: #fff;
+  background-color: #2b6cb5;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+
+button.close:hover {
+  color: #fff;
+}
+
+.close-button {
+  background-color: #2b6cb5;
+  border-color: #2b6cb5;
+}
+
+.close {
+  text-shadow: 0 0 0 #fff;
+}
+
+.height-title,
+.types-title {
+  height: 40px;
+  line-height: 100%;
+}
+
+@media screen and (max-width: 1500px) {
+  .navbar {
+    width: 100%;
+  }
+
+  .pokemon-list .list-group-item {
+    width: 50%;
+  }
+
+  .search-bar {
+    margin: 100px 0 0 0;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .btn {
+    line-height: 150%;
+  }
+
+  .close {
+    line-height: 100%;
+  }
+
+  #searchbox,
+#search-button,
+#clear-filter-button,
+.btn-group {
+    display: block;
+    width: 70%;
+    margin: 10px auto;
+  }
+
+  .dropdown-toggle {
+    margin: 0 0;
+    width: 100%;
+  }
+
+  #pokemon-type__dropdown {
+    text-align: center;
+    background-color: #2b6cb5;
+    font-size: 20px;
+    margin-top: 60px;
+  }
+}
+@media screen and (max-width: 900px) {
+  main {
+    margin: auto;
+    width: 90%;
+  }
+
+  .pokemon-list .list-group-item {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  form {
+    text-align: center;
+  }
+
+  #searchbox,
+#search-button,
+#clear-filter-button,
+.btn-group,
+.pokemon-list {
+    display: block;
+    width: 100%;
+    margin: 10px auto;
+    text-align: center;
+  }
+
+  .search-bar {
+    padding: 0;
+    width: 100%;
+  }
+
+  #pokemon-type__dropdown {
+    margin-top: 50px;
+  }
+
+  .navbar-brand {
+    right: auto;
+  }
+}

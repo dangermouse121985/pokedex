@@ -21,3 +21,19 @@ The key features include:
 - The app works in Chrome, Firefox, Safari, and IE11
 
 ## Optional Requirements
+- Theapp shows a loading Indicator while loading data
+- The app loads a single page data from the API. It loads the next page on scroll until all Pokemon are loaded (up to a defined limit)
+  - Referenced https://webdesign.tutsplus.com/infinite-scroll-pagination-with-javascript-and-a-rest-api--cms-93560a for help and inspiration on coding page load by scroll
+  - The search and filter functions will pull the entire list of Pokemon (if they are not loaded), then perform the search/filter
+
+## Pokemon List (Desktop)
+The following image shows the Pokedex's mobile version. The Pokemon will be displayed in three columns
+![Pokemon Modal - Desktop Version](readme-images/pokemon-list--desktop.png)
+
+### Pokemon List (Mobile)
+The following image shows the Pokedex's mobile version. Each Pokemon will be loaded in a single column
+![Pokemon Modal - Mobile Version](readme-images/pokemon-list--mobile.png)
+
+### Pokemon Modal
+The modal will display an image of the Pokemon along with it's height and Type
+![Pokemon List](readme-images/pokemon-details-modal.png)

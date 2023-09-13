@@ -1,32 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple JS app</title>
-    <link rel="stylesheet" href="css/styles.css" type="text/css">
-</head>
-<body>
-    <header class="page-header">
-        <a href="index.html"><img class="page-header__item pokemom-logo" src="images/pokemon-logo.png" alt="Pokemon Logo"></a>
-        <nav class="main-navigation page-header__item">
-            <ul class="navigation-list" role="menubar">
-                <li class="navigation-list__item" role="presentation">
-                    <a href="index.html" role="menuitem">Home</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <div class="grid">
-            <script src="js/script.js"></script>
-        </div>
-    </main>
-    
-    <footer>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="dist/css/styles.production.css" type="text/css" />
+  </head>
 
-    </footer>
-    
-</body>
+  <body>
+    <header class="page-header">
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">
+          <img
+            class="pokemon-logo"
+            src="images/pokemon-logo.png"
+            alt="Pokemon Logo"
+          />
+        </a>
+      </nav>
+    </header>
+
+    <div></div>
+
+    <div class="waiting-screen">
+      <h1>Pokemon are Joining the Fight! Please Wait!</h1>
+    </div>
+
+    <main>
+      <div class="search-bar">
+        <form action="" method="dialog">
+          <input
+            class="search-term"
+            id="searchbox"
+            type="text"
+            placeholder="Search by Name"
+            aria-label="Search By Pokemon Name"
+          />
+          <input
+            type="Submit"
+            id="search-button"
+            name="Search by Name"
+            class="filter btn btn-primary"
+            aria-label="Search by Pokemon Name Submit Button"
+          />
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-danger dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Filter by Pokemon Type
+            </button>
+            <div
+              id="pokemon-type__dropdown"
+              class="dropdown-menu"
+              role="menu"
+            ></div>
+          </div>
+          <input
+            type="button"
+            id="clear-filter-button"
+            name="Clear-Filter"
+            value="Clear Filter"
+            class="clear-filter btn btn-primary"
+            aria-label="Clear All Filters"
+          />
+        </form>
+      </div>
+
+      <ul class="pokemon-list list-group"></ul>
+    </main>
+    <div
+      class="modal fade"
+      id="pokemonModal"
+      tabindex="-1"
+      role="dialog"
+      aria-label="pokemonModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title" id="pokemonModalLabel"></h1>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary close-button"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer></footer>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="dist/js/promise-polyfill.js"></script>
+    <script src="dist/js/fetch-polyfill.js"></script>
+    <script src="dist/js/script.js"></script>
+  </body>
 </html>
