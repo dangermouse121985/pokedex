@@ -23,5 +23,11 @@ The key features include:
 - The app works in Chrome, Firefox, Safari, and IE11
 
 ## Optional Requirements
-- 
-Referenced https://webdesign.tutsplus.com/infinite-scroll-pagination-with-javascript-and-a-rest-api--cms-93560a for help and inspiration on coding page load by scroll
+- Theapp shows a loading Indicator while loading data
+- The app loads a single page data from the API. It loads the next page on scroll until all Pokemon are loaded (up to a defined limit)
+  - Referenced https://webdesign.tutsplus.com/infinite-scroll-pagination-with-javascript-and-a-rest-api--cms-93560a for help and inspiration on coding page load by scroll
+  - The search and filter functions will pull the entire list of Pokemon (if they are not loaded), then perform the search/filter
+
+## App Images
+![Pokemon List](readme-images/pokemon-details-modal.png)
+![Pokemon Modal](readme-images/pokemon-list.png)
