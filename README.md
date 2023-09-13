@@ -29,13 +29,13 @@ The key features include:
   - The search and filter functions will pull the entire list of Pokemon (if they are not loaded), then perform the search/filter
 
 ## Pokemon List (Desktop)
-The modal will display an image of the Pokemon along with it's height and Type
+The following image shows the Pokedex's mobile version. The Pokemon will be displayed in three columns
 ![Pokemon Modal - Desktop Version](readme-images/pokemon-list--desktop.png)
 
 ### Pokemon List (Mobile)
-The modal will display an image of the Pokemon along with it's height and Type
+The following image shows the Pokedex's mobile version. Each Pokemon will be loaded in a single column
 ![Pokemon Modal - Mobile Version](readme-images/pokemon-list--mobile.png)
 
 ### Pokemon Modal
-The following image shows the Pokedex's mobile version. Each Pokemon will be loaded in a single column
+The modal will display an image of the Pokemon along with it's height and Type
 ![Pokemon List](readme-images/pokemon-details-modal.png)
