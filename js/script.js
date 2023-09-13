@@ -1,10 +1,9 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
-  
 
   let currentOffset = 0;
   const limit = 30;
-  let total = 150;
+  let totalPokemon = 150;
   let apiUrl = `https://pokeapi.co/api/v2/pokemon/?offset=${currentOffset}&limit=${limit}`;
 
   //Return an array of all Pokemon
@@ -141,14 +140,14 @@ let pokemonRepository = (function () {
   }
 
   //Get Pokemon from apiUrl (https://pokeapi.co/api/v2/pokemon/?limit=150)
-  const loadList = async (offset, limit) => { 
-    console.log(offset);
+  const loadList = async (offset, limit) => {
     showLoadingMessage();
+    //if Search or clear filter is done load all 150 Pokemon, otherwise load number of Pokemon (defined by limit) on scroll
     if (offset === undefined) {
-      currentOffset = total;
-      apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-    }else {
-      
+      currentOffset = totalPokemon;
+      apiUrl = `https://pokeapi.co/api/v2/pokemon/?limit=${totalPokemon}`;
+    } else {
+
       apiUrl = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`;
     }
 
@@ -158,12 +157,20 @@ let pokemonRepository = (function () {
       })
       .then(function (json) {
         json.results.forEach(function (item) {
-          let pokemon = {
-            name: item.name,
-            detailsUrl: item.url,
-          };
-          add(pokemon);
-          loadPokemonThumbnail(pokemon);
+          //Check if Pokemon already exists in pokemonList
+          let itemNameInPokemonList = pokemonList.find(o => o.name === item.name);
+          if (itemNameInPokemonList === undefined) {
+            let pokemon = {
+              name: item.name,
+              detailsUrl: item.url,
+            }
+            add(pokemon);
+            loadPokemonThumbnail(pokemon);
+          }
+          setTimeout(function () {
+            hideLoadingMessage();
+          }, 500);
+
         });
       })
       .catch(function (e) {
@@ -174,44 +181,60 @@ let pokemonRepository = (function () {
       });
   }
 
-  const hasMorePokemon = (offset, limit, total) => {
+  //define start index of next API load (up to defined totalPokemon)
+  const hasMorePokemon = (offset, limit, totalPokemon) => {
     const startIndex = (offset) + limit;
-    return startIndex < total + 1;
+    return startIndex < totalPokemon + 1;
   }
 
   const loadPokemon = async (offset, limit) => {
-    // show the loader 
-    showLoadingMessage();
-    try {
-        // if having more facts to fetch 
-        if (hasMorePokemon(offset, limit, total)) {
-            // call the API to get facts 
-            const response = await loadList(offset, limit);
-            printArrayDetails(pokemonRepository.getAll());
-        }
-    } catch (error) {
-        console.log(error.message);
-    } finally {
-        hideLoadingMessage();
+    // show the loader
+    if (offset < totalPokemon) {
+      showLoadingMessage();
     }
-};
+    console.log(offset, limit) 
+    try {
+      // if having more facts to fetch 
+      if (!offset) {
+        // eslint-disable-next-line no-unused-vars
+        const response = await loadList();
+      }
+      else if (hasMorePokemon(offset, limit, totalPokemon)) {
 
-window.addEventListener('scroll', () => {
-  const {
+        // call the API to get facts 
+        // eslint-disable-next-line no-unused-vars
+        const response = await loadList(offset, limit);
+        printArrayDetails(pokemonRepository.getAll());
+      }
+    } catch (error) {
+      console.log(error.message);
+      setTimeout(function () {
+        hideLoadingMessage();
+      }, 500);
+    } finally {
+      setTimeout(function () {
+        hideLoadingMessage();
+      }, 500);
+    }
+  };
+
+  //Listen for scroll event to load addition Pokemon from API
+  window.addEventListener('scroll', () => {
+    const {
       scrollTop,
       scrollHeight,
       clientHeight
-  } = document.documentElement;
-  if (scrollTop + clientHeight >= scrollHeight - 5 &&
-      hasMorePokemon(currentOffset, limit, total)) {
+    } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 5 &&
+      hasMorePokemon(currentOffset, limit, totalPokemon)) {
       currentOffset = currentOffset + 30;
       loadPokemon(currentOffset, limit);
-  }
-}, {
-  passive: true
-});
+    }
+  }, {
+    passive: true
+  });
 
-  //Get Pokemon Details from API
+  //Get individual Pokemon Details from API
   function loadDetails(pokemon) {
     showLoadingMessage();
     let url = pokemon.detailsUrl;
@@ -242,8 +265,8 @@ window.addEventListener('scroll', () => {
       });
   }
 
+  //Get Pokemon Image to load into each Pokemon Tile
   function loadPokemonThumbnail(pokemon) {
-    /* let url = pokemon.detailsUrl; */
     return fetch(pokemon.detailsUrl)
       .then(function (response) {
         return response.json();
@@ -253,7 +276,7 @@ window.addEventListener('scroll', () => {
           details.sprites.other.dream_world.front_default;
         setTimeout(function () {
           hideLoadingMessage();
-        }, 300);
+        }, 1000);
         //Now we add the details to the pokemon
         pokemon.types = details.types;
 
@@ -268,11 +291,14 @@ window.addEventListener('scroll', () => {
       })
       .catch(function (e) {
         console.error(e);
+        setTimeout(function () {
+          hideLoadingMessage();
+        }, 1000);
       });
   }
 
+  //Load Pokemon List
   loadList(currentOffset, limit).then(function () {
-    //Now the data is loaded!
     getAll().forEach(function (pokemon) {
       addListItem(pokemon);
     });
@@ -284,12 +310,9 @@ window.addEventListener('scroll', () => {
     loadList,
     loadDetails,
     addListItem,
-    currentOffset,
-    limit
+    loadPokemon
   };
 })();
-
-
 
 /*Iterate through the pokemonList for loop to print each pokemon with it's height.
 Conditional loop will add a largeBeast class and a mesage if the Pokemon is larger than 0.5m*/
@@ -303,45 +326,48 @@ function printArrayDetails(pokemonArray) {
 
 //Filter list by search term
 function filterPokemonList(searchTerm, searchType) {
-  if (searchTerm === '') {
-    
-    showLoadingMessage();
-    setTimeout(() => {
-      
-      hideLoadingMessage();
-    }, 500);
-    printArrayDetails(pokemonRepository.getAll());
-  } else {
-    let filterPokemonList = pokemonRepository
-      .getAll()
-      .filter(function (filterPokemon) {
-        let filterPokemonLC = '';
+  pokemonRepository.loadPokemon();
+  setTimeout(() => {
+    if (searchTerm === '') {
 
-        if (searchType === 'name') {
-          filterPokemonLC = filterPokemon.name.toLowerCase();
-        }
-
-        if (searchType === 'pokemonType') {
-          filterPokemonLC = filterPokemon.typesStr.toLowerCase();
-        }
-        let searchTermLC = searchTerm.toLowerCase();
-        return filterPokemonLC.includes(searchTermLC);
-      });
-    //Check if Pokemon was found
-    if (filterPokemonList.length === 0) {
-      let pokemonList = document.querySelector('.pokemon-list');
-      pokemonList.innerHTML = '';
-      let noResults = document.createElement('li');
-      noResults.classList.add('list__item', 'no-results');
-      noResults.innerText = 'No Search Results Found';
-
-      pokemonList.appendChild(noResults);
-
-      //if Pokemon was found, display on page
+      showLoadingMessage();
+      setTimeout(() => {
+        hideLoadingMessage();
+      }, 500);
+      printArrayDetails(pokemonRepository.getAll());
     } else {
-      printArrayDetails(filterPokemonList);
+      let filterPokemonList = pokemonRepository
+        .getAll()
+        .filter(function (filterPokemon) {
+          let filterPokemonLC = '';
+
+          if (searchType === 'name') {
+            filterPokemonLC = filterPokemon.name.toLowerCase();
+          }
+
+          if (searchType === 'pokemonType') {
+            filterPokemonLC = filterPokemon.typesStr.toLowerCase();
+          }
+          let searchTermLC = searchTerm.toLowerCase();
+          return filterPokemonLC.includes(searchTermLC);
+        });
+      //Check if Pokemon was found
+      if (filterPokemonList.length === 0) {
+        let pokemonList = document.querySelector('.pokemon-list');
+        pokemonList.innerHTML = '';
+        let noResults = document.createElement('li');
+        noResults.classList.add('list__item', 'no-results');
+        noResults.innerText = 'No Search Results Found';
+
+        pokemonList.appendChild(noResults);
+
+        //if Pokemon was found, display on page
+      } else {
+        printArrayDetails(filterPokemonList);
+      }
     }
-  }
+  }, 500);
+
 }
 
 //Search Pokemon By Name
@@ -379,6 +405,7 @@ let pokemonTypes = [
   'Fairy',
 ];
 
+//Define Types Dropdown Filter Items
 let dropdownToggle = document.querySelector('.dropdown-toggle');
 dropdownToggle.addEventListener('click', function () {
   let toggleWidth = dropdownToggle.offsetWidth;
@@ -418,6 +445,4 @@ function hideLoadingMessage() {
   setTimeout(function () {
     waitingScreen.classList.remove('is-visible');
   }, 300);
-
-
 }
