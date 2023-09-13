@@ -1,5 +1,3 @@
-# simple-js-app
-
 # Pokedex
 
 ## Description
