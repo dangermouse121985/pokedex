@@ -28,11 +28,14 @@ The key features include:
   - Referenced https://webdesign.tutsplus.com/infinite-scroll-pagination-with-javascript-and-a-rest-api--cms-93560a for help and inspiration on coding page load by scroll
   - The search and filter functions will pull the entire list of Pokemon (if they are not loaded), then perform the search/filter
 
-## App Images
-### Pokemon List
-The following image shows the Pokedex's mobile version. Each Pokemon will be loaded in a single column
-![Pokemon List](readme-images/pokemon-details-modal.png)
+## Pokemon List (Desktop)
+The modal will display an image of the Pokemon along with it's height and Type
+![Pokemon Modal - Desktop Version](readme-images/pokemon-list--desktop.png)
+
+### Pokemon List (Mobile)
+The modal will display an image of the Pokemon along with it's height and Type
+![Pokemon Modal - Mobile Version](readme-images/pokemon-list--mobile.png)
 
 ### Pokemon Modal
-The modal will display an image of the Pokemon along with it's height and Type
-![Pokemon Modal](readme-images/pokemon-list.png)
+The following image shows the Pokedex's mobile version. Each Pokemon will be loaded in a single column
+![Pokemon List](readme-images/pokemon-details-modal.png)
