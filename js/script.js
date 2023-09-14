@@ -115,11 +115,7 @@ let pokemonRepository = (function () {
       //Add Pokemon Height to Height Tag
       pokemonHeightH2.innerText = 'Height';
       //If Pokemon Height is greater than 1 make unit of measurement plural
-      if (pokemon.height <= 1) {
-        pokemonHeight.innerText = `${pokemon.height} Decimeter`;
-      } else {
-        pokemonHeight.innerText = `${pokemon.height} Decimeters`;
-      }
+      pokemonHeight.innerText = `${pokemon.height} Decimeter${pokemon.height <= 1 ? '' : 's'}`;
 
       //Add Pokemon Type to Types List
       pokemonTypesH2.innerText = 'Types';
@@ -183,7 +179,7 @@ let pokemonRepository = (function () {
 
   //define start index of next API load (up to defined totalPokemon)
   const hasMorePokemon = (offset, limit, totalPokemon) => {
-    const startIndex = (offset) + limit;
+    const startIndex = offset + limit;
     return startIndex < totalPokemon + 1;
   }
 
@@ -192,17 +188,15 @@ let pokemonRepository = (function () {
     if (offset < totalPokemon) {
       showLoadingMessage();
     }
-    console.log(offset, limit) 
+    console.log(offset, limit)
     try {
       // if having more facts to fetch 
       if (!offset) {
-        // eslint-disable-next-line no-unused-vars
         const response = await loadList();
       }
       else if (hasMorePokemon(offset, limit, totalPokemon)) {
 
-        // call the API to get facts 
-        // eslint-disable-next-line no-unused-vars
+        // call the API to get facts
         const response = await loadList(offset, limit);
         printArrayDetails(pokemonRepository.getAll());
       }
@@ -244,7 +238,6 @@ let pokemonRepository = (function () {
       })
       .then(function (details) {
         //Now we add the details to the pokemon
-        pokemon.imageUrl = details.sprites.other.dream_world.front_default;
         pokemon.height = details.height;
         pokemon.types = details.types;
 
@@ -329,7 +322,6 @@ function filterPokemonList(searchTerm, searchType) {
   pokemonRepository.loadPokemon();
   setTimeout(() => {
     if (searchTerm === '') {
-
       showLoadingMessage();
       setTimeout(() => {
         hideLoadingMessage();
@@ -381,6 +373,7 @@ searchButton.addEventListener('click', function () {
 let clearButton = document.querySelector('.clear-filter');
 clearButton.addEventListener('click', function () {
   filterPokemonList('');
+  document.getElementById('searchbox').value = '';
 });
 
 //Pokemon Types Dropdown Filter
